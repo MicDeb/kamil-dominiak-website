@@ -1,0 +1,10 @@
+{
+  "navigation": {
+    "about": "About",
+    "video": "Video",
+    "blog": "Blog",
+    "offer": "Offer",
+    "calendar": "Calendar",
+    "contact": "Contact"
+  }
+}

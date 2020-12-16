@@ -1,6 +1,6 @@
 import i18next from 'i18next';
-import translationsPl from '../locales/pl/translations';
-import translationsEn from '../locales/en/translations';
+import translationsPl from '../locales/pl/translations.json';
+import translationsEn from '../locales/en/translations.json';
 
 i18next.init({
   fallbackLng: 'pl',
