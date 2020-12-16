@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar'
 import './all.scss'
 import useSiteMetadata from './SiteMetadata'
 import { withPrefix } from 'gatsby'
+import { withTrans } from '../i18n/withTrans';
 
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata()
@@ -55,4 +56,4 @@ const TemplateWrapper = ({ children }) => {
   )
 }
 
-export default TemplateWrapper
+export default withTrans(TemplateWrapper)
