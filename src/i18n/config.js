@@ -1,6 +1,6 @@
 import i18next from 'i18next';
-import translationsPl from '../locales/pl/translations.json';
-import translationsEn from '../locales/en/translations.json';
+import translationsPl from '../locales/pl/translations';
+import translationsEn from '../locales/en/translations';
 
 i18next.init({
   fallbackLng: 'pl',
@@ -10,7 +10,7 @@ i18next.init({
     },
     en: {
       translations: translationsEn,
-    }
+    },
   },
   ns: ['translations'],
   defaultNS: 'translations',
