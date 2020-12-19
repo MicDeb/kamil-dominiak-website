@@ -1,5 +1,8 @@
+@import "~normalize.css/normalize.css";
 @import "~flexboxgrid-sass/flexboxgrid";
+@import "variables/colors";
 
+@import "components/navbar";
 $kaldi-red: #D64000;
 $kaldi-red-invert: #fff;
 

@@ -23,6 +23,10 @@ const Testimonials = ({ testimonials }) => (
   </div>
 );
 
+Testimonials.defaultProps = {
+  testimonials: [],
+};
+
 Testimonials.propTypes = {
   testimonials: PropTypes.arrayOf(
     PropTypes.shape({

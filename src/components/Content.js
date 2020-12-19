@@ -12,6 +12,11 @@ const Content = ({ content, className }) => (
   <div className={className}>{content}</div>
 );
 
+Content.defaultProps = {
+  content: null,
+  className: '',
+};
+
 Content.propTypes = {
   content: PropTypes.node,
   className: PropTypes.string,

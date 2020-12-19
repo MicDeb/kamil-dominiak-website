@@ -64,6 +64,10 @@ class BlogRoll extends React.Component {
   }
 }
 
+BlogRoll.defaultProps = {
+  data: null,
+};
+
 BlogRoll.propTypes = {
   data: PropTypes.shape({
     allMarkdownRemark: PropTypes.shape({

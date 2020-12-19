@@ -119,6 +119,16 @@ export const IndexPageTemplate = ({
   </div>
 );
 
+IndexPageTemplate.defaultProps = {
+  image: null,
+  title: '',
+  heading: '',
+  subheading: '',
+  mainpitch: null,
+  description: '',
+  intro: null,
+};
+
 IndexPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   title: PropTypes.string,
@@ -145,6 +155,10 @@ const IndexPage = ({ data }) => {
       intro={frontmatter.intro}
     />
   );
+};
+
+IndexPage.defaultProps = {
+  data: null,
 };
 
 IndexPage.propTypes = {

@@ -1,9 +1,10 @@
 import '../styles/all.scss';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { withPrefix } from 'gatsby';
 import Footer from './Footer';
-import Navbar from './Navbar';
+import Navbar from './navigation/Navbar';
 import useSiteMetadata from './SiteMetadata';
 import { withTrans } from '../i18n/withTrans';
 
@@ -69,6 +70,10 @@ const TemplateWrapper = ({ children }) => {
       <Footer />
     </div>
   );
+};
+
+TemplateWrapper.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default withTrans(TemplateWrapper);

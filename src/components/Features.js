@@ -27,6 +27,10 @@ const FeatureGrid = ({ gridItems }) => (
   </div>
 );
 
+FeatureGrid.defaultProps = {
+  gridItems: [],
+};
+
 FeatureGrid.propTypes = {
   gridItems: PropTypes.arrayOf(
     PropTypes.shape({

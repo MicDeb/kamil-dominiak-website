@@ -3,6 +3,7 @@ import { I18nextProvider, withTranslation } from 'react-i18next';
 import i18next from './config';
 
 export function withTrans(WrappedComponent) {
+  // eslint-disable-next-line no-param-reassign
   WrappedComponent = withTranslation()(WrappedComponent);
 
   return class extends Component {

@@ -1,9 +1,12 @@
+/* eslint-disable */
 import React from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { navigate } from 'gatsby-link';
 
 function encode(data) {
   const formData = new FormData();
 
+  // eslint-disable-next-line no-restricted-syntax
   for (const key of Object.keys(data)) {
     formData.append(key, data[key]);
   }
@@ -36,6 +39,7 @@ export default class Contact extends React.Component {
       }),
     })
       .then(() => navigate(form.getAttribute('action')))
+      // eslint-disable-next-line no-alert
       .catch((error) => alert(error));
   }
 
@@ -53,7 +57,8 @@ export default class Contact extends React.Component {
               data-netlify-honeypot='bot-field'
               onSubmit={this.handleSubmit}
             >
-              {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
+              {/* The `form-name` hidden field is required to
+              support form submissions without JavaScript */}
               <input
                 type='hidden'
                 name='form-name'

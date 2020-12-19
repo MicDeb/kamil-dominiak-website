@@ -9,8 +9,8 @@ module.exports = {
       resolve: 'gatsby-plugin-layout',
       options: {
         // add relative path to your layout component
-        component: `${__dirname}/src/components/Layout.js`
-      }
+        component: `${ __dirname }/src/components/Layout.js`,
+      },
     },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sass',
@@ -18,21 +18,21 @@ module.exports = {
       // keep as first gatsby-source-filesystem plugin for gatsby image support
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/static/img`,
+        path: `${ __dirname }/static/img`,
         name: 'uploads',
       },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/src/pages`,
+        path: `${ __dirname }/src/pages`,
         name: 'pages',
       },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/src/img`,
+        path: `${ __dirname }/src/img`,
         name: 'images',
       },
     },
@@ -70,16 +70,16 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-netlify-cms',
       options: {
-        modulePath: `${__dirname}/src/cms/cms.js`,
+        modulePath: `${ __dirname }/src/cms/cms.js`,
       },
     },
     {
       resolve: 'gatsby-plugin-purgecss', // purges all unused/unreferenced css rules
       options: {
         develop: true, // Activates purging in npm run develop
-        purgeOnly: ['/styles/all.scss'], // applies purging only on the bulma css file
+        purgeOnly: [], // applies purging only on the bulma css file
       },
     }, // must be after other CSS plugins
     'gatsby-plugin-netlify', // make sure to keep it last in the array
   ],
-}
+};

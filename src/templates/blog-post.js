@@ -45,12 +45,21 @@ export const BlogPostTemplate = ({
   );
 };
 
+BlogPostTemplate.defaultProps = {
+  contentComponent: () => null,
+  description: '',
+  title: '',
+  helmet: null,
+  tags: [],
+};
+
 BlogPostTemplate.propTypes = {
   content: PropTypes.node.isRequired,
   contentComponent: PropTypes.func,
   description: PropTypes.string,
-  title: PropTypes.string,
   helmet: PropTypes.object,
+  tags: PropTypes.array,
+  title: PropTypes.string,
 };
 
 const BlogPost = ({ data }) => {
@@ -74,6 +83,10 @@ const BlogPost = ({ data }) => {
       title={post.frontmatter.title}
     />
   );
+};
+
+BlogPost.defaultProps = {
+  data: null,
 };
 
 BlogPost.propTypes = {

@@ -103,6 +103,18 @@ export const ProductPageTemplate = ({
   </div>
 );
 
+ProductPageTemplate.defaultProps = {
+  image: null,
+  title: '',
+  heading: '',
+  description: '',
+  intro: null,
+  main: null,
+  testimonials: [],
+  fullImage: null,
+  pricing: null,
+};
+
 ProductPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   title: PropTypes.string,
@@ -143,6 +155,10 @@ const ProductPage = ({ data }) => {
       pricing={frontmatter.pricing}
     />
   );
+};
+
+ProductPage.defaultProps = {
+  data: null,
 };
 
 ProductPage.propTypes = {

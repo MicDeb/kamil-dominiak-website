@@ -27,6 +27,11 @@ export const AboutPageTemplate = ({ title, content, contentComponent }) => {
   );
 };
 
+AboutPageTemplate.defaultProps = {
+  content: '',
+  contentComponent: () => null,
+};
+
 AboutPageTemplate.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string,
