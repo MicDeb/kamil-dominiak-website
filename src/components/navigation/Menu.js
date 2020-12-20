@@ -1,8 +1,9 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import { useTranslation } from 'react-i18next';
 import map from 'lodash/map';
+import { navigationItems } from './navigationItems';
 
 export default function Menu({
   handleLanguageChange,
@@ -11,21 +12,12 @@ export default function Menu({
 }) {
   const { t } = useTranslation();
 
-  const navigationItems = useMemo(() => ([
-    { location: '/about', name: 'about' },
-    { location: '/products', name: 'video' },
-    { location: '/blog', name: 'blog' },
-    { location: '/contact', name: 'contact' },
-    { location: '/about', name: 'calendar' },
-    { location: '/about', name: 'offer' },
-  ]), []);
-
   return (
     <div className={`navbar__menu ${ isOpen ? 'navbar__menu--open' : '' }`}>
       <div className='navbar__menu--links'>
         {map(navigationItems, (item) => (
           <Link
-            className='navbar-item'
+            className='navbar__menu--links--item'
             to={item.location}
           >
             {t(`navigation.${ item.name }`)}

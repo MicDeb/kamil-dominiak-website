@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   siteMetadata: {
     title: 'Gatsby + Netlify CMS Starter',
@@ -39,6 +41,18 @@ module.exports = {
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     'gatsby-plugin-eslint',
+    {
+      resolve: 'gatsby-plugin-root-import',
+      options: {
+        src: path.join(__dirname, 'src'),
+        pages: path.join(__dirname, 'src/pages'),
+        components: path.join(__dirname, 'src/components'),
+        img: path.join(__dirname, 'src/img'),
+        cms: path.join(__dirname, 'src/cms'),
+        locales: path.join(__dirname, 'src/locales'),
+        templates: path.join(__dirname, 'src/templates'),
+      },
+    },
     {
       resolve: 'gatsby-transformer-remark',
       options: {

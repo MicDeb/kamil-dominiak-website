@@ -31,7 +31,7 @@
 
       div {
         width: 2rem;
-        height: 0.25rem;
+        height: 0.15rem;
         background: $light-grey;
         border-radius: 10px;
         transition: all 0.3s linear;
@@ -95,23 +95,21 @@
       &--links {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
+        margin-left: $gap-lg;
 
-        a {
-          font-size: 2rem;
+        &--item {
+          width: 100%;
+          @include border-bottom();
+          font-size: $font-size;
+          color: $font-color;
           text-transform: uppercase;
           padding: 1rem 0;
           font-weight: bold;
           letter-spacing: 0.5rem;
-          color: $font-color;
           text-decoration: none;
           transition: color 0.3s linear;
-
-          @media (max-width: 576px) {
-            font-size: 1.5rem;
-            text-align: center;
-          }
 
           &:hover {
             color: #343078;
