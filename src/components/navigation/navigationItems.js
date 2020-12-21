@@ -4,11 +4,11 @@ import instagram from 'src/img/social/instagram.svg';
 export const navigationItems = Object.freeze([
   { location: '/', name: 'home' },
   { location: '/about', name: 'about' },
-  { location: '/products', name: 'video' },
+  { location: '/video', name: 'video' },
   { location: '/blog', name: 'blog' },
   { location: '/contact', name: 'contact' },
-  { location: '/about', name: 'calendar' },
-  { location: '/about', name: 'offer' },
+  { location: '/calendar', name: 'calendar' },
+  { location: '/offer', name: 'offer' },
 ]);
 
 export const socialNavigationItems = Object.freeze([
