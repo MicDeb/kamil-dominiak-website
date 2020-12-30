@@ -2,11 +2,12 @@
 @import "~normalize.css/normalize.css";
 @import "reset";
 @import "~flexboxgrid-sass/flexboxgrid";
-@import "variables/colors";
-@import "variables/distance";
-@import "variables/typography";
+
+@import "variables/index";
+
 @import "mixins";
 
-@import "components/navbar";
-@import "components/footer";
+@import "components/index";
+
+@import "pages/index";
 

@@ -14,7 +14,7 @@
     &--item {
       padding: $gap-sm 0;
       text-transform: uppercase;
-      font-weight: 600;
+      font-weight: $font-weight-bold;
       width: 100%;
       border-bottom: 2px solid #D9D6CC;
       font-size: 1rem;
