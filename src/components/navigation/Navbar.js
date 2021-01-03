@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import Logo from 'src/components/Logo';
 import Menu from './Menu';
 import Hamburger from './Hamburger';
 
@@ -25,6 +26,7 @@ export default function Navbar() {
         role='navigation'
         aria-label='main-navigation'
       >
+        <Logo />
         <Hamburger
           isOpen={isOpen}
           setOpen={toggleHamburger}
