@@ -1,6 +1,9 @@
 @import "fonts/font-face.css";
 @import "~normalize.css/normalize.css";
 @import "reset";
+
+$outer-margin: 1rem;
+
 @import "~flexboxgrid-sass/flexboxgrid";
 
 @import "variables/index";

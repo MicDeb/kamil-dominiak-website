@@ -1,0 +1,110 @@
+.calendar {
+  margin-bottom: 2.5rem;
+
+  &__year {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  &__pagination {
+    @include flex-center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    @include border-bottom;
+    p {
+      margin-bottom: 0;
+      font-size: 2rem;
+      width: 150px;
+    }
+  }
+
+  &__single-event {
+    @include border-bottom;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+
+    &--day {
+      margin-bottom: 1rem;
+
+      .day-date {
+        display: block;
+        font-size: 1.6rem;
+        font-weight: bold;
+      }
+
+      .day-name {
+        font-weight: bold;
+      }
+    }
+
+    .day-events {
+      margin-bottom: .6rem;
+      [class*=col-] {
+        @include flex-center;
+        @include flex-column;
+      }
+
+      p {
+        margin-bottom: 0;
+      }
+
+      .event-title {
+        font-weight: 600;
+        font-size: 1.6rem;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .event-place {
+        text-decoration: underline;
+      }
+
+      .separate {
+        @include border-bottom;
+        padding-bottom: .6rem;
+      }
+    }
+  }
+}
+
+//@include respond-to($tablet) {
+//  .calendar {
+//    padding: 7rem 2rem;
+//
+//    &__year {
+//      font-size: 3rem;
+//    }
+//
+//    &__pagination {
+//      p {
+//        font-size: 3rem;
+//        width: 210px;
+//      }
+//    }
+//
+//    &__single-event {
+//      &--day {
+//        .day-date {
+//          font-size: 2.2rem;
+//        }
+//        .day-name {
+//          font-size: 1.4rem;
+//        }
+//      }
+//
+//      .day-events {
+//        margin-bottom: 1rem;
+//        .event-hour {
+//          font-size: 1.4rem;
+//        }
+//        .event-title {
+//          font-size: 2rem;
+//        }
+//        .event-place {
+//          font-size: 1.4rem;
+//        }
+//      }
+//    }
+//
+//  }
+//}

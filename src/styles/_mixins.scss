@@ -111,3 +111,26 @@
 @mixin border-bottom() {
   border-bottom: 2px solid $grey;
 }
+
+@mixin flex-center-space-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-column-space-between {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
