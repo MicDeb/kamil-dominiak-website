@@ -7,5 +7,12 @@
     "offer": "Oferta",
     "calendar": "Kalendarz",
     "contact": "Kontakt"
+  },
+  "home": {
+    "subtitle": "Aktor | Wokalista | Trener wokalny"
+  },
+  "contact": {
+    "title": "Pozostańmy w kontakcie",
+    "subtitle": "Chcesz o czymś porozmawiać? Wyślij mi swoją wiadomość"
   }
 }

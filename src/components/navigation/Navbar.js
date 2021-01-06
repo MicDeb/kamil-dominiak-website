@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Logo from 'src/components/Logo';
 import Menu from './Menu';
@@ -7,8 +7,11 @@ import Hamburger from './Hamburger';
 export default function Navbar() {
   const { i18n } = useTranslation();
   const [isOpen, setIsOpen] = React.useState(false);
-
   const [language, setLanguage] = useState('pl');
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [window.location.href]);
 
   const handleLanguageChange = (event) => {
     i18n.changeLanguage(event.target.value);

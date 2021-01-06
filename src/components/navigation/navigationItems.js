@@ -6,9 +6,9 @@ export const navigationItems = Object.freeze([
   { location: '/about', name: 'about' },
   { location: '/video', name: 'video' },
   { location: '/blog', name: 'blog' },
-  { location: '/contact', name: 'contact' },
   { location: '/calendar', name: 'calendar' },
   { location: '/offer', name: 'offer' },
+  { location: '/contact', name: 'contact' },
 ]);
 
 export const socialNavigationItems = Object.freeze([

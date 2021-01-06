@@ -7,5 +7,12 @@
     "offer": "Offer",
     "calendar": "Calendar",
     "contact": "Contact"
+  },
+  "home": {
+    "subtitle": "Actor | Vocalist | Vocal coach"
+  },
+  "contact": {
+    "title": "Get in touch",
+    "subtitle": "Would you want to talk about something? Just send me your message and I will happily chat"
   }
 }
