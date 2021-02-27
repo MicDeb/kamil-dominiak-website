@@ -1,124 +1,107 @@
-.navigation {
+.header {
   position: fixed;
   top: 0;
-  //background: transparent;
-  background: black;
   z-index: 100;
-  border-bottom: 1px solid transparent;
   width: 100%;
   left: 0;
   display: flex;
-  padding: 0 10px;
+  padding: $gap-md $gap*2;
   align-items: center;
-  justify-content: center;
-  height: $navigation-height-sm;
+  justify-content: space-between;
+  background: transparent;
 
-  .navbar {
-    width: 100%;
+  .hamburger {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 2rem;
+    height: 2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10;
 
-    &__hamburger {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      width: 2rem;
-      height: 2rem;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      z-index: 10;
-
-      &:focus {
-        outline: none;
-      }
-
-      div {
-        width: 2rem;
-        height: 0.15rem;
-        background: $light-grey;
-        transition: all 0.3s linear;
-        position: relative;
-        transform-origin: 1px;
-
-        &:first-child {
-          transform: rotate(0);
-        }
-
-        &:nth-child(2) {
-          opacity: 1;
-          transform: translateX(0);
-        }
-
-        &:nth-child(3) {
-          transform: rotate(0);
-        }
-      }
-
-      &--open {
-        div {
-          background: $font-color;
-
-          &:first-child {
-            transform: rotate(45deg);
-          }
-
-          &:nth-child(2) {
-            opacity: 0;
-            transform: translateX(20px);
-          }
-
-          &:nth-child(3) {
-            transform: rotate(-45deg);
-          }
-        }
-      }
+    &:focus {
+      outline: none;
     }
 
-    &__menu {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      background: $light-grey;
-      height: 100vh;
-      position: absolute;
-      top: 0;
-      left: 0;
-      transform: translateX(-100%);
-      transition: transform 0.3s ease-in-out;
+    div {
+      width: 2rem;
+      height: 0.1rem;
+      background: $font-color;
+      transition: all 0.3s linear;
+      position: relative;
+      transform-origin: 1px;
 
-      &--open {
+      &:first-child {
+        transform: rotate(0);
+      }
+
+      &:nth-child(2) {
+        opacity: 1;
         transform: translateX(0);
       }
 
-      @media (max-width: 576px) {
-        width: 100%;
+      &:nth-child(3) {
+        transform: rotate(0);
       }
+    }
 
-      &--links {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
-        margin-left: $gap-lg;
+    &--open {
+      div {
+        background: $font-color;
 
-        &--item {
-          width: 100%;
-          @include border-bottom();
-          font-size: $font-size;
-          color: $font-color;
-          text-transform: uppercase;
-          padding: 1rem 0;
-          font-weight: $font-weight-bold;
-          letter-spacing: 0.5rem;
-          text-decoration: none;
-          transition: color 0.3s linear;
+        &:first-child {
+          transform: rotate(45deg);
+        }
 
-          &:hover {
-            color: #343078;
-          }
+        &:nth-child(2) {
+          opacity: 0;
+          transform: translateX(20px);
+        }
+
+        &:nth-child(3) {
+          transform: rotate(-45deg);
+        }
+      }
+    }
+  }
+
+  .navbar {
+    width: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    &.open {
+      width: 100vw;
+      background-color: $nav-grey;
+    }
+
+    &__sidebar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      &--link {
+        font-family: $font-family-secondary;
+        width: 100%;
+        display: block;
+        font-size: 13vw;
+        color: $white;
+        text-transform: lowercase;
+        padding: .5rem;
+        text-decoration: none;
+        transition: color 0.3s linear;
+        text-align: center;
+
+        &:hover {
+          color: $blue;
         }
       }
 

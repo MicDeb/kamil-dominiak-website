@@ -1,14 +1,11 @@
-@import "fonts/font-face.css";
-@import "~normalize.css/normalize.css";
-@import "reset";
-
-$outer-margin: 1rem;
-
-@import "~flexboxgrid-sass/flexboxgrid";
-
 @import "variables/index";
-
 @import "mixins";
+
+@import "fonts/font-face.css";
+
+@import '~antd/dist/antd.css';
+
+@import "reset";
 
 @import "components/index";
 

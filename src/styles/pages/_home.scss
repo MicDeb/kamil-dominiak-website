@@ -1,26 +1,36 @@
 .home-page {
   &-container {
-    @include page-container;
-    background-image: url('../img/main/kamil-dominiak003.jpg');
+    .aspectratio-container {
+      display: inline-block;
+      position: relative;
 
+      &.fit-height{
+        height: 100%;
+        width: 100%;
+      }
 
-    &:before {
-      @include page-container-before;
+      &.aspect-2-3::after{
+        padding-top: 100%;
+        display: block;
+        content: '';
+      }
+
+      .aspectratio-content{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+
+        div {
+          height: 100%;
+
+          img {
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
     }
-  }
-
-  &__title,
-  &__subtitle {
-    color: $light-grey;
-    z-index: 3;
-    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3), -1px 2px 2px rgba(0, 0, 0, 0.1);
-  }
-
-  &__title {
-    @include page-title;
-  }
-
-  &__subtitle {
-    font-weight: $font-weight-bold;
   }
 }

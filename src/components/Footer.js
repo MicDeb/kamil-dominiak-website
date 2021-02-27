@@ -1,43 +1,42 @@
 import React from 'react';
-import { Link } from 'gatsby';
-import map from 'lodash/map';
 import { useTranslation } from 'react-i18next';
-import {
-  navigationItems,
-  socialNavigationItems,
-} from './navigation/navigationItems';
+import map from 'lodash/map';
+import { Row, Col } from 'antd';
+import { contact } from 'src/helpers/contact';
+import { socialNavigationItems } from './navigation/navigationItems';
 
 export default function Footer() {
   const { t } = useTranslation();
+  const year = new Date().getFullYear();
   return (
-    <footer className='footer'>
-      <ul className='footer__navigation'>
-        {map(navigationItems, (item) => (
-          <li className='footer__navigation--item'>
-            <Link
-              className='navbar-item'
-              to={item.location}
+    <>
+      <Row justify='center'>
+        <Col xs={24}>
+          {`© ${ year } Kamil Dominiak`}
+        </Col>
+        <Col xs={24}>
+          {`${ t('mail') }: ${ contact.mail }`}
+        </Col>
+        <Col xs={24}>
+          {`${ t('phone') }: ${ contact.phone }`}
+        </Col>
+      </Row>
+      <Row justify='center'>
+        <Col xs={24}>
+          {map(socialNavigationItems, (socialItem) => (
+            <a
+              title={socialItem.title}
+              href={socialItem.location}
             >
-              {t(`navigation.${ item.name }`)}
-            </Link>
-          </li>
-        ))}
-      </ul>
-
-      <div className='footer__social'>
-        {map(socialNavigationItems, (socialItem) => (
-          <a
-            title={socialItem.title}
-            href={socialItem.location}
-          >
-            <img
-              src={socialItem.icon}
-              alt={socialItem.alt}
-              style={{ width: '1em', height: '1em' }}
-            />
-          </a>
-        ))}
-      </div>
-    </footer>
+              <img
+                src={socialItem.icon}
+                alt={socialItem.alt}
+                style={{ width: '1em', height: '1em' }}
+              />
+            </a>
+          ))}
+        </Col>
+      </Row>
+    </>
   );
 }

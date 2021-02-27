@@ -2,38 +2,39 @@
   margin-bottom: 2.5rem;
 
   &__year {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    font-size: $font-size-title;
+    margin-bottom: $gap-md;
   }
 
   &__pagination {
     @include flex-center;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
+    margin-bottom: $gap-md;
+    padding-bottom: $gap-md;
     @include border-bottom;
     p {
+      text-align: center;
       margin-bottom: 0;
-      font-size: 2rem;
+      font-size: $font-size-xl;
       width: 150px;
     }
   }
 
   &__single-event {
     @include border-bottom;
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
+    margin-bottom: $gap-sm;
+    padding-bottom: $gap-sm;
 
     &--day {
-      margin-bottom: 1rem;
+      margin-bottom: $gap-sm;
 
       .day-date {
         display: block;
-        font-size: 1.6rem;
-        font-weight: bold;
+        font-size: $font-size-lg;
+        font-weight: $font-weight-bold;
       }
 
       .day-name {
-        font-weight: bold;
+        font-weight: $font-weight-bold;
       }
     }
 
@@ -49,14 +50,22 @@
       }
 
       .event-title {
-        font-weight: 600;
-        font-size: 1.6rem;
+        font-weight: $font-weight-bold;
+        font-size: $font-size-lg;
         text-align: center;
         text-transform: uppercase;
       }
 
       .event-place {
         text-decoration: underline;
+        font-size: $font-size-sm;
+        font-weight: $font-weight-bold;
+        text-align: center;
+      }
+
+      .event-hour {
+        font-size: $font-size-sm;
+        text-align: center;
       }
 
       .separate {

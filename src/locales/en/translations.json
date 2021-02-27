@@ -1,4 +1,6 @@
 {
+  "as": "as",
+  "at": "at",
   "navigation": {
     "home": "Home",
     "about": "About",
@@ -14,5 +16,31 @@
   "contact": {
     "title": "Get in touch",
     "subtitle": "Would you want to talk about something? Just send me your message and I will happily chat"
+  },
+  "calendar": {
+    "no_events": "There are no events for the month"
+  },
+  "months": {
+    "january": "January",
+    "february": "February",
+    "march": "March",
+    "april": "April",
+    "may": "May",
+    "june": "June",
+    "july": "July",
+    "august": "August",
+    "september": "September",
+    "october": "October",
+    "november": "November",
+    "december": "December"
+  },
+  "days": {
+    "sunday": "Sunday",
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday"
   }
 }

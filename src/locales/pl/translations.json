@@ -1,4 +1,6 @@
 {
+  "as": "jako",
+  "at": "godz.",
   "navigation": {
     "home": "Strona główna",
     "about": "O mnie",
@@ -14,5 +16,31 @@
   "contact": {
     "title": "Pozostańmy w kontakcie",
     "subtitle": "Chcesz o czymś porozmawiać? Wyślij mi swoją wiadomość"
+  },
+  "calendar": {
+    "no_events": "Brak wydarzeń w danym miesiącu"
+  },
+  "months": {
+    "january": "Styczeń",
+    "february": "Luty",
+    "march": "Marzec",
+    "april": "Kwiecień",
+    "may": "Maj",
+    "june": "Czerwiec",
+    "july": "Lipiec",
+    "august": "Sierpień",
+    "september": "Wrzesień",
+    "october": "Październik",
+    "november": "Listopad",
+    "december": "Grudzień"
+  },
+  "days": {
+    "sunday": "niedziela",
+    "monday": "poniedziałek",
+    "tuesday": "wtorek",
+    "wednesday": "środa",
+    "thursday": "czwartek",
+    "friday": "piątek",
+    "saturday": "sobota"
   }
 }

@@ -3,15 +3,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { withPrefix } from 'gatsby';
-import Footer from './Footer';
-import Navbar from './navigation/Navbar';
+import { Layout, Row, Col } from 'antd';
+import Navigation from './navigation/Navigation';
+import PageFooter from './Footer';
 import useSiteMetadata from './SiteMetadata';
 import { withTrans } from '../i18n/withTrans';
 
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata();
+
+  const { Header, Footer, Content } = Layout;
+
   return (
-    <div>
+    <>
       <Helmet>
         <html lang='en' />
         <title>{title}</title>
@@ -65,10 +69,26 @@ const TemplateWrapper = ({ children }) => {
           content={`${ withPrefix('/') }img/og-image.jpg`}
         />
       </Helmet>
-      <Navbar />
-      <main id='main-container'>{children}</main>
-      <Footer />
-    </div>
+
+      <Layout>
+        <Header className='header'>
+          <Navigation />
+        </Header>
+        <Content>
+          <div id='main-container'>
+            <Row>
+              <Col xs={24}>
+                {children}
+              </Col>
+            </Row>
+          </div>
+        </Content>
+        <Footer className='footer'>
+          <PageFooter />
+        </Footer>
+      </Layout>
+
+    </>
   );
 };
 

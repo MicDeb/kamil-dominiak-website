@@ -5,7 +5,7 @@ export default function Hamburger({ isOpen, setOpen }) {
   return (
     <div
       onClick={setOpen}
-      className={`navbar__hamburger ${ isOpen ? 'navbar__hamburger--open' : '' }`}
+      className={`hamburger ${ isOpen ? 'hamburger--open' : '' }`}
     >
       <div />
       <div />

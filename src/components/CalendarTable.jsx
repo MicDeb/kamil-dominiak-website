@@ -1,39 +1,42 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 const today = new Date();
 const initialMonth = today.getMonth();
 const initialYear = today.getFullYear();
 
 const months = {
-  0: 'Styczeń',
-  1: 'Luty',
-  2: 'Marzec',
-  3: 'Kwiecień',
-  4: 'Maj',
-  5: 'Czerwiec',
-  6: 'Lipiec',
-  7: 'Sierpień',
-  8: 'Wrzesień',
-  9: 'Październik',
-  10: 'Listopad',
-  11: 'Grudzień',
+  0: 'january',
+  1: 'february',
+  2: 'march',
+  3: 'april',
+  4: 'may',
+  5: 'june',
+  6: 'july',
+  7: 'august',
+  8: 'september',
+  9: 'october',
+  10: 'november',
+  11: 'december',
 };
 
 const days = {
-  0: 'niedziela',
-  1: 'poniedziałek',
-  2: 'wtorek',
-  3: 'środa',
-  4: 'czwartek',
-  5: 'piątek',
-  6: 'sobota',
+  0: 'sunday',
+  1: 'monday',
+  2: 'tuesday',
+  3: 'wednesday',
+  4: 'thursday',
+  5: 'friday',
+  6: 'saturday',
 };
 
 export function CalendarTable(props) {
   const {
     eventsByYears,
   } = props;
+
+  const { t } = useTranslation();
 
   const [selectedMonthId, setSelectedMonth] = useState(initialMonth);
   const [selectedYear, setSelectedYear] = useState(initialYear);
@@ -63,7 +66,7 @@ export function CalendarTable(props) {
 
     const eventDayName = days[eventDay];
 
-    return eventDayName;
+    return t(`days.${ eventDayName }`);
   };
 
   const getCustomDateFormat = (day, month) => {
@@ -80,8 +83,12 @@ export function CalendarTable(props) {
   return (
     <div className='calendar container-fluid'>
       <div className='row'>
+
         <div className='col-xs-12'>
           <div className='calendar__year'>{selectedYear}</div>
+        </div>
+
+        <div className='col-xs-12'>
           <div className='calendar__pagination'>
             <button
               type='button'
@@ -89,7 +96,7 @@ export function CalendarTable(props) {
             >
               {'<'}
             </button>
-            <p className='text-center'>{months[selectedMonthId]}</p>
+            <p className='text-center'>{t(`months.${ months[selectedMonthId] }`)}</p>
             <button
               type='button'
               onClick={handleNextMonth}
@@ -98,6 +105,7 @@ export function CalendarTable(props) {
             </button>
           </div>
         </div>
+
       </div>
 
       {selectedEvents.length > 0
@@ -125,7 +133,8 @@ export function CalendarTable(props) {
                       <div className='row'>
                         <div className='col-xs-2'>
                           <span className='event-hour'>
-                            godz.
+                            {t('at')}
+                            {' '}
                             {dayEvent.time}
                           </span>
                         </div>
@@ -136,7 +145,8 @@ export function CalendarTable(props) {
                           {dayEvent.role
                             && (
                               <div className='text-center'>
-                                jako
+                                {t('as')}
+                                {' '}
                                 {dayEvent.role}
                               </div>
                             )}
@@ -160,7 +170,7 @@ export function CalendarTable(props) {
           </>
         )
         : (
-          <h3 className='text-center'>Brak wydarzeń w danym miesiącu</h3>
+          <h3 className='text-center'>{t('calendar.no_events')}</h3>
         )}
     </div>
   );
