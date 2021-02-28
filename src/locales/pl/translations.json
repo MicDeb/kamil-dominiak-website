@@ -11,7 +11,8 @@
     "contact": "Kontakt"
   },
   "home": {
-    "subtitle": "Aktor | Wokalista | Trener wokalny"
+    "subtitle": "Aktor | Wokalista | Trener wokalny",
+    "recent_post": "Najnowsze wpisy"
   },
   "contact": {
     "title": "Pozostańmy w kontakcie",
@@ -20,6 +21,7 @@
   "calendar": {
     "no_events": "Brak wydarzeń w danym miesiącu"
   },
+  "video": "Video",
   "months": {
     "january": "Styczeń",
     "february": "Luty",
@@ -42,5 +44,14 @@
     "thursday": "czwartek",
     "friday": "piątek",
     "saturday": "sobota"
-  }
+  },
+  "about": {
+    "main": "Nazywam się Kamil Dominiak. Jestem aktorem, wokalistą i nauczycielem emisji głosu.",
+    "educationParam": "Ukończyłem studia na Wydziale Aktorskim w Akademii Teatralnej w Warszawie oraz kurs musicalowy w Guildhall School of Music and Drama w Londynie.",
+    "estillParamFirst": "Moje poszukiwania skutecznej metody pracy z głosem, jak również czysty przypadek (jeśli istnieją przypadki) naprowadziły mnie na Estill Voice Training. Miałem przyjemność studiować tę metodę w Londynie pod okiem niesamowitych Maureen Scott, Charlotte Xerri oraz Anne Marie-Speed.",
+    "estillParamSecond": "W 2019 zdobyłem tytuł Estill Master Trainer (EMT) i stałem pierwszym certyfikowanym nauczycielem Estill w Polsce.",
+    "workWithMe": "Zapraszam do współpracy!"
+  },
+  "download_cv": "Pobierz moje CV",
+  "read_more": "Czytaj więcej"
 }

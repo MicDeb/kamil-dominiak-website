@@ -51,6 +51,7 @@ module.exports = {
         cms: path.join(__dirname, 'src/cms'),
         locales: path.join(__dirname, 'src/locales'),
         templates: path.join(__dirname, 'src/templates'),
+        static: path.join(__dirname, 'static'),
       },
     },
     {

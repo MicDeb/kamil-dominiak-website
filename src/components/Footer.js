@@ -1,12 +1,15 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import map from 'lodash/map';
-import { Row, Col } from 'antd';
+import { useTranslation } from 'react-i18next';
+import {
+  Row, Col, Typography, Space,
+} from 'antd';
 import { contact } from 'src/helpers/contact';
-import { socialNavigationItems } from './navigation/navigationItems';
+import { socialNavigationItems } from 'src/components/navigation/navigationItems';
 
 export default function Footer() {
   const { t } = useTranslation();
+  const { Link } = Typography;
   const year = new Date().getFullYear();
   return (
     <>
@@ -17,24 +20,14 @@ export default function Footer() {
         <Col xs={24}>
           {`${ t('mail') }: ${ contact.mail }`}
         </Col>
-        <Col xs={24}>
-          {`${ t('phone') }: ${ contact.phone }`}
-        </Col>
       </Row>
       <Row justify='center'>
         <Col xs={24}>
-          {map(socialNavigationItems, (socialItem) => (
-            <a
-              title={socialItem.title}
-              href={socialItem.location}
-            >
-              <img
-                src={socialItem.icon}
-                alt={socialItem.alt}
-                style={{ width: '1em', height: '1em' }}
-              />
-            </a>
-          ))}
+          <Space>
+            {map(socialNavigationItems, (item) => (
+              <Link href={item.location}>{item.name}</Link>
+            ))}
+          </Space>
         </Col>
       </Row>
     </>

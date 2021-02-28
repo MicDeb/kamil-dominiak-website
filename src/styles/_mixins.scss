@@ -31,34 +31,33 @@
   justify-content: space-between;
 }
 
-@mixin page-container {
-  width: 100vw;
-  height: 100vh;
-  background-color: $grey;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  position: relative;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-}
-
-@mixin page-container-before {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  z-index: 2;
-  content: "";
-  opacity: .5;
-  background: $blue;
-}
+//@mixin page-container {
+//  width: 100%;
+//  height: calc(100vh - 6rem);
+//  background-size: cover;
+//  background-repeat: no-repeat;
+//  background-position: center;
+//  position: relative;
+//
+//  display: flex;
+//  justify-content: center;
+//  align-items: center;
+//  flex-direction: column;
+//  text-align: center;
+//}
+//
+//@mixin page-container-before {
+//  position: absolute;
+//  left: 0;
+//  top: 0;
+//  width: 100%;
+//  height: 100%;
+//  display: block;
+//  z-index: 2;
+//  //content: "";
+//  opacity: .5;
+//  background: $blue;
+//}
 
 @mixin page-title {
   font-size: $font-size-title;

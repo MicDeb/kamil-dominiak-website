@@ -1,27 +1,7 @@
 .home-page {
   &-container {
     .aspectratio-container {
-      display: inline-block;
-      position: relative;
-
-      &.fit-height{
-        height: 100%;
-        width: 100%;
-      }
-
-      &.aspect-2-3::after{
-        padding-top: 100%;
-        display: block;
-        content: '';
-      }
-
       .aspectratio-content{
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        left: 0;
-
         div {
           height: 100%;
 

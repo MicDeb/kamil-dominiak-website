@@ -1,9 +1,13 @@
 import React from 'react';
+import { Link } from 'gatsby';
+import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
 import { Carousel, Typography, Space } from 'antd';
 import { homePagePhotos } from 'src/helpers/homePagePhotos';
+import BlogRoll from 'src/components/BlogRoll';
 
 const Index = () => {
+  const { t } = useTranslation();
   const {
     Title, Paragraph,
   } = Typography;
@@ -11,7 +15,10 @@ const Index = () => {
     <section className='section'>
       <Helmet title='Kamil Dominiak - official website' />
       <div className='home-page-container'>
-        <Space direction='vertical' size={40}>
+        <Space
+          direction='vertical'
+          size={40}
+        >
           <div className='aspectratio-container aspect-2-3 fit-height'>
             <div className='aspectratio-content'>
               <Carousel
@@ -25,7 +32,6 @@ const Index = () => {
                       src={photo.src}
                       alt={photo.alt}
                     />
-                    {/* <span className='profession'>{t(professions[index])}</span> */}
                   </div>
                 ))}
               </Carousel>
@@ -34,30 +40,20 @@ const Index = () => {
 
           <Typography>
             <Title level={3}>
-              Nazywam się Kamil Dominiak. Jestem aktorem, wokalistą i nauczycielem emisji głosu.
+              {t('about.main')}
             </Title>
             <Paragraph>
-              Ukończyłem studia na Wydziale Aktorskim w Akademii Teatralnej w Warszawie
-              oraz kurs musicalowy w Guildhall School of Music and Drama w Londynie.
+              {t('about.educationParam')}
             </Paragraph>
-
-            <Paragraph>
-              Moje poszukiwania skutecznej metody pracy z głosem,
-              jak również czysty przypadek (jeśli istnieją przypadki)
-              naprowadziły mnie na Estill Voice Training.
-              Miałem przyjemność studiować tę metodę w Londynie
-              pod okiem niesamowitych Maureen Scott, Charlotte Xerri oraz Anne Marie-Speed.
-            </Paragraph>
-
-            <Paragraph>
-              W 2019 zdobyłem tytuł Estill Master Trainer (EMT)
-              i stałem pierwszym certyfikowanym nauczycielem Estill w Polsce.
-            </Paragraph>
-
-            <Paragraph>
-              Zapraszam do współpracy!
-            </Paragraph>
+            <Link to='/about'>{t('read_more')}</Link>
           </Typography>
+
+          <div>
+            <Title level={3}>
+              {t('home.recent_post')}
+            </Title>
+            <BlogRoll />
+          </div>
         </Space>
       </div>
     </section>
