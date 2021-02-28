@@ -9,6 +9,8 @@ description: >-
   pandemia jak najszybciej się skończyła i żebyśmy mogli wrócić do stabilniejszej wersji naszego życia!
 featuredpost: true
 featuredimage: /img/kamil-dominiak004.jpg
+tags:
+  - kamil_dominiak
 ---
 Dla mnie okres od marca 2020 roku, kiedy to usłyszeliśmy, że musimy pozostać przez bliżej nieokreślony
 czas w domu, był łaskawy. Miałem czas przemyśleć sporo rzeczy, które nagromadziło się we mnie przez
