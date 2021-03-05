@@ -8,8 +8,9 @@ import Navigation from './navigation/Navigation';
 import PageFooter from './Footer';
 import useSiteMetadata from './SiteMetadata';
 import { withTrans } from '../i18n/withTrans';
+import Logo from './Logo';
 
-const TemplateWrapper = ({ children }) => {
+const TemplateWrapper = ({ children, location }) => {
   const { title, description } = useSiteMetadata();
 
   const { Header, Footer, Content } = Layout;
@@ -72,10 +73,11 @@ const TemplateWrapper = ({ children }) => {
 
       <Layout>
         <Header className='header'>
-          <Navigation />
+          <Navigation location={location} />
         </Header>
         <Content>
           <div id='main-container'>
+            <Logo />
             <Row>
               <Col xs={24}>
                 {children}
@@ -94,6 +96,7 @@ const TemplateWrapper = ({ children }) => {
 
 TemplateWrapper.propTypes = {
   children: PropTypes.node.isRequired,
+  location: PropTypes.object.isRequired,
 };
 
 export default withTrans(TemplateWrapper);

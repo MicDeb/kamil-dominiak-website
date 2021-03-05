@@ -14,7 +14,11 @@ export default function Hamburger({ isOpen, setOpen }) {
   );
 }
 
+Hamburger.defaultProps = {
+  isOpen: false,
+};
+
 Hamburger.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
+  isOpen: PropTypes.bool,
   setOpen: PropTypes.func.isRequired,
 };

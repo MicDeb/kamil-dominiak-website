@@ -1,18 +1,17 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, {
+  useState, useCallback, useMemo, useEffect,
+} from 'react';
 import PropTypes from 'prop-types';
 import { Keyframes, animated } from 'react-spring/renderprops';
 import delay from 'delay';
 import map from 'lodash/map';
 import { Link } from 'gatsby';
 import { useTranslation } from 'react-i18next';
-import Logo from '../Logo';
 import Hamburger from './Hamburger';
 import { navigationItems } from './navigationItems';
 
 // Creates a spring with predefined animation slots
 const Sidebar = Keyframes.Spring({
-  // Slots can take arrays/chains,
-  peek: [{ x: 0, from: { x: -100 }, delay: 500 }, { x: -100, delay: 800 }],
   // single items,
   open: { delay: 0, x: 0 },
   // or async functions with side-effects
@@ -24,13 +23,7 @@ const Sidebar = Keyframes.Spring({
 
 // Creates a keyframed trail
 const Content = Keyframes.Trail({
-  peek: [
-    {
-      x: 0, opacity: 1, from: { x: -100, opacity: 0 }, delay: 600,
-    },
-    { x: -100, opacity: 0, delay: 0 },
-  ],
-  open: { x: 0, opacity: 1, delay: 100 },
+  open: { x: 0, opacity: 1, delay: 700 },
   close: { x: -100, opacity: 0, delay: 0 },
 });
 
@@ -54,22 +47,31 @@ const items = map(navigationItems, (item) => (
   <Item item={item} />
 ));
 
-export default function Navigation() {
+export default function Navigation({ location }) {
   const [open, setOpen] = useState(false);
+  const [exclude, setExclude] = useState(true);
 
-  const toggleNavigation = useCallback(() => setOpen((prevOpen) => !prevOpen), []);
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
+
+  const toggleNavigation = useCallback(() => {
+    setOpen((prevOpen) => !prevOpen);
+    if (exclude) {
+      setExclude(false);
+    }
+  }, [exclude]);
 
   const state = useMemo(() => (open ? 'open' : 'close'), [open]);
 
   return (
     <>
-      <Logo />
       <Hamburger
         isOpen={open}
         setOpen={toggleNavigation}
       />
       <nav
-        className={`navbar ${ state }`}
+        className={`navbar ${ state } ${ exclude ? 'exclude' : '' }`}
         role='navigation'
         aria-label='main-navigation'
       >
@@ -115,3 +117,7 @@ export default function Navigation() {
     </>
   );
 }
+
+Navigation.propTypes = {
+  location: PropTypes.object.isRequired,
+};

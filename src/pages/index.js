@@ -2,7 +2,9 @@ import React from 'react';
 import { Link } from 'gatsby';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
-import { Carousel, Typography, Space } from 'antd';
+import {
+  Carousel, Typography, Space, Divider,
+} from 'antd';
 import { homePagePhotos } from 'src/helpers/homePagePhotos';
 import BlogRoll from 'src/components/BlogRoll';
 
@@ -47,6 +49,8 @@ const Index = () => {
             </Paragraph>
             <Link to='/about'>{t('read_more')}</Link>
           </Typography>
+
+          <Divider />
 
           <div>
             <Title level={3}>

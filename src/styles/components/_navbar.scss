@@ -14,8 +14,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 2rem;
-    height: 2rem;
+    width: 20px;
+    height: 20px;
     background: transparent;
     border: none;
     cursor: pointer;
@@ -27,12 +27,12 @@
     }
 
     div {
-      width: 2rem;
-      height: 0.1rem;
+      width: 20px;
+      height: 2px;
       background: $font-color;
       transition: all 0.3s linear;
       position: relative;
-      transform-origin: 1px;
+      transform-origin: 0;
 
       &:first-child {
         transform: rotate(0);
@@ -77,10 +77,26 @@
     position: fixed;
     top: 0;
     left: 0;
+    background: $nav-grey;
 
     &.open {
+      z-index: 9;
+      animation: navbarAnimateOpen .4s ease-out .4s 1 forwards;
+
+      &:after {
+        content: '';
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        right: 0;
+        animation: navbarAnimate .8s ease-out 0s 1 forwards;
+        background: $white;
+      }
+    }
+
+    &.close:not(.exclude) {
+      animation: navbarAnimateClose .4s ease-out 1s 1 forwards;
       width: 100vw;
-      background-color: $nav-grey;
     }
 
     &__sidebar {
@@ -111,5 +127,35 @@
         justify-content: center;
       }
     }
+  }
+}
+
+@keyframes navbarAnimate {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 100vw
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes navbarAnimateOpen {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100vw;
+  }
+}
+
+@keyframes navbarAnimateClose {
+  0% {
+    width: 100vw;
+  }
+  100% {
+    width: 0;
   }
 }
