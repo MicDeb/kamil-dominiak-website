@@ -1,9 +1,12 @@
 .logo {
   position: relative;
   font-size: $font-size-lg;
-  z-index: 1000;
   color: $font-color-headers;
   font-family: $font-family-secondary;
   font-weight: $font-weight-bold;
   letter-spacing: .2rem;
+  margin-bottom: $gap * 4;
+  height: 30px;
+  display: flex;
+  align-items: center;
 }

@@ -1,46 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { kebabCase } from 'lodash';
 import { Helmet } from 'react-helmet';
-import { graphql, Link } from 'gatsby';
-import Content, { HTMLContent } from '../components/Content';
+import { graphql } from 'gatsby';
+import { Col, Row, Typography } from 'antd';
+import Content, { HTMLContent } from 'src/components/Content';
+import PreviewCompatibleImage from 'src/components/PreviewCompatibleImage';
 
 export const BlogPostTemplate = ({
   content,
   contentComponent,
   description,
-  tags,
   title,
   helmet,
+  image,
 }) => {
   const PostContent = contentComponent || Content;
+  const {
+    Title, Paragraph,
+  } = Typography;
 
   return (
     <section className='section'>
       {helmet || ''}
-      <div className='container content'>
-        <div className='columns'>
-          <div className='column is-10 is-offset-1'>
-            <h1 className='title is-size-2 has-text-weight-bold is-bold-light'>
-              {title}
-            </h1>
-            <p>{description}</p>
-            <PostContent content={content} />
-            {tags && tags.length ? (
-              <div style={{ marginTop: '4rem' }}>
-                <h4>Tags</h4>
-                <ul className='taglist'>
-                  {tags.map((tag) => (
-                    <li key={`${ tag }tag`}>
-                      <Link to={`/tags/${ kebabCase(tag) }/`}>{tag}</Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
-          </div>
-        </div>
-      </div>
+      <Row>
+        <Col>
+          {image ? (
+            <div className='featured-thumbnail'>
+              <PreviewCompatibleImage
+                imageInfo={{
+                  image,
+                  alt: `featured image thumbnail for post ${ title }`,
+                }}
+              />
+            </div>
+          ) : null}
+          <Title level={4}>
+            {title}
+          </Title>
+          <Paragraph>{description}</Paragraph>
+          <PostContent content={content} />
+        </Col>
+      </Row>
     </section>
   );
 };
@@ -50,7 +50,7 @@ BlogPostTemplate.defaultProps = {
   description: '',
   title: '',
   helmet: null,
-  tags: [],
+  image: null,
 };
 
 BlogPostTemplate.propTypes = {
@@ -58,7 +58,7 @@ BlogPostTemplate.propTypes = {
   contentComponent: PropTypes.func,
   description: PropTypes.string,
   helmet: PropTypes.object,
-  tags: PropTypes.array,
+  image: PropTypes.object,
   title: PropTypes.string,
 };
 
@@ -79,8 +79,8 @@ const BlogPost = ({ data }) => {
           />
         </Helmet>
       )}
-      tags={post.frontmatter.tags}
       title={post.frontmatter.title}
+      image={post.frontmatter.featuredimage}
     />
   );
 };
@@ -106,7 +106,13 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         title
         description
-        tags
+        featuredimage {
+          childImageSharp {
+            fluid(maxWidth: 120, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
     }
   }

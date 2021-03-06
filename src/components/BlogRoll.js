@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import { Link, graphql, StaticQuery } from 'gatsby';
 import { Col, Row, Typography } from 'antd';
 import PreviewCompatibleImage from './PreviewCompatibleImage';
 
 function BlogRoll({ data }) {
+  const { t } = useTranslation();
   const { edges: posts } = data.allMarkdownRemark;
   const {
     Title, Paragraph,
@@ -41,7 +43,7 @@ function BlogRoll({ data }) {
                      className='title'
                      to={post.fields.slug}
                    >
-                     <Title>{post.frontmatter.title}</Title>
+                     <Title level={4}>{post.frontmatter.title}</Title>
                    </Link>
                  </div>
 
@@ -61,7 +63,7 @@ function BlogRoll({ data }) {
                  className='button'
                  to={post.fields.slug}
                >
-                 Keep Reading →
+                 {t('read_more')}
                </Link>
              </Typography>
            </article>

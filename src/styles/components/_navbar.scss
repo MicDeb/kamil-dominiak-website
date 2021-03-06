@@ -7,7 +7,7 @@
   display: flex;
   padding: $gap-md $gap*2;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   background: transparent;
 
   .hamburger {
