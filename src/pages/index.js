@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'gatsby';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
 import {
@@ -7,6 +6,8 @@ import {
 } from 'antd';
 import { homePagePhotos } from 'src/helpers/homePagePhotos';
 import BlogRoll from 'src/components/BlogRoll';
+import ReadMoreButton from 'src/components/ReadMoreButton';
+import SectionHeading from 'src/components/SectionHeading';
 
 const Index = () => {
   const { t } = useTranslation();
@@ -16,12 +17,9 @@ const Index = () => {
   return (
     <section className='section'>
       <Helmet title='Kamil Dominiak - official website' />
-      <div className='home-page-container'>
-        <Space
-          direction='vertical'
-          size={40}
-        >
-          <div className='aspectratio-container aspect-2-3 fit-height'>
+      <div className='home-page'>
+        <div className='home-page__hero'>
+          <div className='home-page__hero--carousel aspectratio-container aspect-2-3 fit-height'>
             <div className='aspectratio-content'>
               <Carousel
                 key='images-slider'
@@ -40,22 +38,27 @@ const Index = () => {
             </div>
           </div>
 
-          <Typography>
+          <Typography className='home-page__hero--text'>
             <Title level={3}>
-              {t('about.main')}
+              {t('about.home_page_main')}
             </Title>
             <Paragraph>
-              {t('about.educationParam')}
+              {t('about.home_page_subtitle')}
             </Paragraph>
-            <Link to='/about'>{t('read_more')}</Link>
+            <ReadMoreButton to='/about' />
           </Typography>
+        </div>
 
+        <Space
+          direction='vertical'
+          size={40}
+        >
           <Divider />
 
           <div>
-            <Title level={3}>
-              {t('home.recent_post')}
-            </Title>
+            <SectionHeading
+              title='home.recent_post'
+            />
             <BlogRoll />
           </div>
         </Space>

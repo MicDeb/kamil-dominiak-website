@@ -1,0 +1,11 @@
+.blog-roll {
+  .featured-thumbnail {
+    margin-bottom: $gap;
+  }
+  .post-meta {
+    margin-bottom: $gap;
+    &__date {
+      font-size: $font-size-sm;
+    }
+  }
+}

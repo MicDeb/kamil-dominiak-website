@@ -12,9 +12,32 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   @include box-sizing(border-box);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1.ant-typography,
+.ant-typography h1,
+h1,
+h2.ant-typography,
+.ant-typography h2,
+h2,
+h3.ant-typography,
+.ant-typography h3,
+h3,
+h4.ant-typography,
+.ant-typography h4,
+h4,
+h5.ant-typography,
+.ant-typography h5,
+h5,
+h6.ant-typography
+.ant-typography h6
+h6, {
   font-family: $font-family-secondary;
   color: $font-color-headers;
+  font-weight: $font-weight-regular;
+}
+
+
+a.ant-typography, .ant-typography a, a {
+  color: $blue;
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
@@ -93,13 +116,13 @@ button {
     width: 100%;
   }
 
-  &.aspect-2-3::after{
+  &.aspect-2-3::after {
     padding-top: 100%;
     display: block;
     content: '';
   }
 
-  .aspectratio-content{
+  .aspectratio-content {
     position: absolute;
     top: 0;
     bottom: 0;

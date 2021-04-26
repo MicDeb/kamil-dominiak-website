@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function Logo() {
+export default function Spinner() {
   return (
-    <div className='logo'>
-      <div className='logo__item'>
+    <div className='spinner'>
+      <div className='spinner__item'>
         <p>
           <span>K</span>
           <span>D</span>

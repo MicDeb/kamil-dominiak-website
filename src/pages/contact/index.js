@@ -1,9 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
-import { Typography, Space } from 'antd';
+import { Typography } from 'antd';
 import { contact } from 'src/helpers/contact';
-import ContactPhoto from 'src/img/main/kamil-dominiak015.jpg';
+import ContactPhoto from 'src/img/main/kamil-dominiak019.jpg';
 
 export default function Contact() {
   const { t } = useTranslation();
@@ -13,32 +13,31 @@ export default function Contact() {
   return (
     <section className='section'>
       <Helmet title='Kamil Dominiak - official website | contact' />
-      <div className='contact-page-container'>
-        <Space direction='vertical' size={20}>
+      <div className='contact-page__hero'>
+
+        <div className='contact-page__hero--img aspectratio-container aspect-2-3 fit-height'>
+          <div className='aspectratio-content'>
+            <img
+              src={ContactPhoto}
+              alt='Kamil Dominiak'
+            />
+          </div>
+        </div>
+
+        <Typography>
           <Typography>
             <Title level={3}>
               {t('contact.title')}
             </Title>
           </Typography>
+          <Paragraph>
+            {t('contact.subtitle')}
+          </Paragraph>
+          <Paragraph strong>
+            {contact.mail}
+          </Paragraph>
+        </Typography>
 
-          <div className='aspectratio-container aspect-2-3 fit-height'>
-            <div className='aspectratio-content'>
-              <img
-                src={ContactPhoto}
-                alt='Kamil Dominiak'
-              />
-            </div>
-          </div>
-
-          <Typography>
-            <Paragraph>
-              {t('contact.subtitle')}
-            </Paragraph>
-            <Paragraph strong>
-              {contact.mail}
-            </Paragraph>
-          </Typography>
-        </Space>
       </div>
     </section>
   );

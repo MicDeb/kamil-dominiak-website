@@ -7,8 +7,8 @@
   display: flex;
   padding: $gap-md $gap*2;
   align-items: center;
-  justify-content: flex-end;
-  background: transparent;
+  justify-content: space-between;
+  background: $background-color;
 
   .hamburger {
     display: flex;
@@ -120,11 +120,35 @@
         &:hover {
           color: $blue;
         }
+
+        @media screen and (min-width: $tablet-lg) {
+          font-size: 8vw;
+        }
+
+        @media screen and (min-width: $desktop) {
+          font-size: 6vw;
+        }
+
+        @media screen and (min-width: $desktop-xl) {
+          font-size: 4vw;
+        }
       }
 
       &--language {
         display: flex;
         justify-content: center;
+      }
+
+      &--social-container {
+        display: flex;
+        width: 200px;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: $gap*2;
+
+        &--link {
+          color: $blue;
+        }
       }
     }
   }

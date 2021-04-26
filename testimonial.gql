@@ -1,0 +1,14 @@
+type Event {
+  eventStartDate: String!
+  eventStartTime: String
+  eventEndDate: String
+  eventPlace: String
+  eventName: String
+  eventDescription: String
+  eventLink: String
+  eventRole: String
+}
+
+type Query {
+  allEvents: [Event!]!
+}

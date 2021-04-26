@@ -1,36 +1,30 @@
 .contact-page {
-  &-container {
+  &__hero {
     text-align: center;
 
-    .aspectratio-container {
+    &--img {
       .aspectratio-content {
-        img {
-          width: 100%;
-          object-position: top;
+        div {
+          height: 100%;
+
+          img {
+            height: 100%;
+            object-fit: cover;
+          }
         }
       }
     }
-  }
 
-  &__title,
-  &__subtitle,
-  &__email {
-    //color: $light-grey;
-    //z-index: 3;
-    //text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3), -1px 2px 2px rgba(0, 0, 0, 0.1);
-  }
+    @media screen and (min-width: $desktop) {
+      @include hero-container-desktop;
 
-  &__title {
-    //@include page-title;
-  }
+      &--img.aspectratio-container.fit-height {
+        @include hero-img-desktop;
+      }
 
-  &__subtitle {
-    //font-weight: $font-weight-bold;
-  }
-
-  &__email {
-    //font-size: $font-size-lg;
-    //margin: 1rem;
-    //line-height: 1;
+      &--text {
+        @include hero-text-desktop;
+      }
+    }
   }
 }

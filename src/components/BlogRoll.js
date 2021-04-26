@@ -1,20 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useTranslation } from 'react-i18next';
+import slice from 'lodash/slice';
 import { Link, graphql, StaticQuery } from 'gatsby';
 import { Col, Row, Typography } from 'antd';
 import PreviewCompatibleImage from './PreviewCompatibleImage';
+import ReadMoreButton from './ReadMoreButton';
 
-function BlogRoll({ data }) {
-  const { t } = useTranslation();
+function BlogRoll({ data, postsCount }) {
   const { edges: posts } = data.allMarkdownRemark;
   const {
     Title, Paragraph,
   } = Typography;
   return (
-    <Row>
+    <Row className='blog-roll'>
       {posts
-       && posts.map(({ node: post }) => (
+       && slice(posts, 0, postsCount || posts.length).map(({ node: post }) => (
          <Col
            xs={24}
            md={12}
@@ -48,7 +48,7 @@ function BlogRoll({ data }) {
                  </div>
 
                  <div>
-                   <span className='subtitle'>
+                   <span className='post-meta__date'>
                      {post.frontmatter.date}
                    </span>
                  </div>
@@ -59,12 +59,7 @@ function BlogRoll({ data }) {
                  {post.excerpt}
                </Paragraph>
 
-               <Link
-                 className='button'
-                 to={post.fields.slug}
-               >
-                 {t('read_more')}
-               </Link>
+               <ReadMoreButton to={post.fields.slug} />
              </Typography>
            </article>
          </Col>
@@ -75,6 +70,7 @@ function BlogRoll({ data }) {
 
 BlogRoll.defaultProps = {
   data: null,
+  postsCount: 0,
 };
 
 BlogRoll.propTypes = {
@@ -83,6 +79,7 @@ BlogRoll.propTypes = {
       edges: PropTypes.array,
     }),
   }),
+  postsCount: PropTypes.number,
 };
 
 export default () => (

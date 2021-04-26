@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
+import { Col, Row } from 'antd';
 
 const today = new Date();
 const initialMonth = today.getMonth();
@@ -81,14 +82,13 @@ export function CalendarTable(props) {
   );
 
   return (
-    <div className='calendar container-fluid'>
-      <div className='row'>
-
-        <div className='col-xs-12'>
+    <div className='calendar'>
+      <Row>
+        <Col xs={24}>
           <div className='calendar__year'>{selectedYear}</div>
-        </div>
+        </Col>
 
-        <div className='col-xs-12'>
+        <Col xs={24}>
           <div className='calendar__pagination'>
             <button
               type='button'
@@ -104,24 +104,21 @@ export function CalendarTable(props) {
               {'>'}
             </button>
           </div>
-        </div>
-
-      </div>
+        </Col>
+      </Row>
 
       {selectedEvents.length > 0
         ? (
           <>
             {selectedEvents.map((event) => (
-              <div
-                className='row calendar__single-event'
+              <Row
+                className='calendar__single-event'
                 key={event.day}
               >
-                <div
-                  className='col-xs-12 calendar__single-event--day'
-                >
+                <Col className='calendar__single-event--day'>
                   <span className='day-date'>{getCustomDateFormat(event.day, selectedMonthId)}</span>
                   <span className='day-name'>{getEventDayName(selectedYear, selectedMonthId, event.day)}</span>
-                </div>
+                </Col>
 
                 {event.dayEvents.map((dayEvent, index) => {
                   const hasSeparator = getSeparator(event, index);
@@ -130,16 +127,17 @@ export function CalendarTable(props) {
                       key={event.day + dayEvent.time}
                       className='day-events'
                     >
-                      <div className='row'>
-                        <div className='col-xs-2'>
+                      <Row>
+                        <Col xs={4}>
                           <span className='event-hour'>
                             {t('at')}
                             {' '}
                             {dayEvent.time}
                           </span>
-                        </div>
-                        <div
-                          className={`col-xs-6 ${ hasSeparator ? 'separate' : '' }`}
+                        </Col>
+                        <Col
+                          xs={12}
+                          className={`${ hasSeparator ? 'separate' : '' }`}
                         >
                           <p className='event-title'>{dayEvent.title}</p>
                           {dayEvent.role
@@ -150,9 +148,10 @@ export function CalendarTable(props) {
                                 {dayEvent.role}
                               </div>
                             )}
-                        </div>
-                        <div
-                          className={`col-xs-4 ${ hasSeparator ? 'separate' : '' }`}
+                        </Col>
+                        <Col
+                          xs={8}
+                          className={`${ hasSeparator ? 'separate' : '' }`}
                         >
                           <a
                             href={dayEvent.tickets}
@@ -160,12 +159,12 @@ export function CalendarTable(props) {
                           >
                             {dayEvent.place}
                           </a>
-                        </div>
-                      </div>
+                        </Col>
+                      </Row>
                     </div>
                   );
                 })}
-              </div>
+              </Row>
             ))}
           </>
         )

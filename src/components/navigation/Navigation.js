@@ -8,7 +8,7 @@ import map from 'lodash/map';
 import { Link } from 'gatsby';
 import { useTranslation } from 'react-i18next';
 import Hamburger from './Hamburger';
-import { navigationItems } from './navigationItems';
+import { navigationItems, socialNavigationItems } from './navigationItems';
 
 // Creates a spring with predefined animation slots
 const Sidebar = Keyframes.Spring({
@@ -45,6 +45,23 @@ Item.propTypes = {
 
 const items = map(navigationItems, (item) => (
   <Item item={item} />
+));
+
+const SocialMediaItem = ({ item }) => (
+  <a
+    className='navbar__sidebar--social-container--link'
+    href={item.location}
+  >
+    { item.name }
+  </a>
+);
+
+SocialMediaItem.propTypes = {
+  item: PropTypes.object.isRequired,
+};
+
+const socialMediaItems = map(socialNavigationItems, (item) => (
+  <SocialMediaItem item={item} />
 ));
 
 export default function Navigation({ location }) {
@@ -103,12 +120,44 @@ export default function Navigation({ location }) {
                         ...props,
                       }}
                     >
-                      <div className={i === 0 ? 'middle' : ''}>
+                      <div
+                        className={i === 0 ? 'middle' : ''}
+                        onClick={toggleNavigation}
+                      >
                         {item}
                       </div>
                     </animated.div>
                   )}
                 </Content>
+
+                <div className='navbar__sidebar--social-container'>
+                  <Content
+                    native
+                    items={socialMediaItems}
+                    keys={socialMediaItems.map((_, i) => i)}
+                    reverse={!open}
+                    state={state}
+                  >
+
+                    {/* eslint-disable-next-line react/prop-types */}
+                    {(item, i) => ({ x: x2, ...props }) => (
+                      <animated.div
+                        style={{
+                          // eslint-disable-next-line react/prop-types
+                          transform: x2.interpolate((x3) => `translate3d(${ x3 }%,0,0)`),
+                          ...props,
+                        }}
+                      >
+                        <div
+                          className={i === 0 ? 'middle' : ''}
+                          onClick={toggleNavigation}
+                        >
+                          {item}
+                        </div>
+                      </animated.div>
+                    )}
+                  </Content>
+                </div>
               </animated.div>
             </>
           )}

@@ -1,0 +1,120 @@
+$spinnerSize: 8rem;
+$borderWidth: .15rem;
+$lineAnimationTime: 3s;
+$letterAnimateTime: 3s;
+
+.spinner {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 100000;
+  background: $background-color;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: spinnerContainerAnimate 1s ease 1.5s;
+
+  &__item {
+    width: $spinnerSize;
+    height: $spinnerSize;
+    position: relative;
+    transform: rotate(135deg);
+    animation: spinnerAnimate 1s linear;
+
+    p {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      span {
+        width: calc(#{$spinnerSize} / 2);
+        height: calc(#{$spinnerSize} / 2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: $font-family-secondary;
+        font-size: calc(#{$spinnerSize} * .3);
+        animation: letterAnimate 1s linear;
+      }
+
+      &:nth-child(2) {
+        span {
+          transform: rotate(-180deg);
+        }
+      }
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: $borderWidth;
+      background: $font-color;
+      top: 50%;
+      left: 0;
+      animation: lineAnimateHorizontal 1s linear;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      height: 100%;
+      width: $borderWidth;
+      background: $font-color;
+      top: 0;
+      left: 50%;
+      animation: lineAnimateVertical 1s linear;
+    }
+  }
+}
+
+@keyframes spinnerAnimate {
+  0% {
+    transform: rotate(-45deg);
+  }
+  100% {
+    transform: rotate(135deg);
+  }
+}
+
+@keyframes lineAnimateHorizontal {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes lineAnimateVertical {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes letterAnimate {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes spinnerContainerAnimate {
+  from {
+    right: 0;
+  }
+  to {
+    right: -100%;
+  }
+}

@@ -1,4 +1,23 @@
 #main-container {
-  padding: $gap $gap*2 $gap*2;
-  min-height: calc(100vh - 8rem);
+  padding: $gap*7 10.5% $gap*2;
+  min-height: calc(100vh - #{$gap * 7});
+
+  .social-media-vertical-nav {
+    display: none;
+    position: fixed;
+    top: 50%;
+    right: 33px;
+    transform: translate(0, -50%);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+
+    @media screen and (min-width: $desktop) {
+      display: block;
+    }
+
+    a {
+      margin: $gap 0;
+      text-transform: uppercase;
+    }
+  }
 }

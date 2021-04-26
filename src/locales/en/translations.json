@@ -46,11 +46,33 @@
     "saturday": "Saturday"
   },
   "about": {
+    "home_page_main": "Witam! Nazywam się Kamil Dominiak. Jestem aktorem, wokalistą oraz nauczycielem emisji głosu.",
+    "home_page_subtitle": "Tutaj dowiesz o mojej  działalności  pedagogicznej i artystycznej!",
+    "home_page_work_with_me": "Zapraszam!",
     "main": "Nazywam się Kamil Dominiak. Jestem aktorem, wokalistą i nauczycielem emisji głosu.",
-    "educationParam": "Ukończyłem studia na Wydziale Aktorskim w Akademii Teatralnej w Warszawie oraz kurs musicalowy w Guildhall School of Music and Drama w Londynie.",
-    "estillParamFirst": "Moje poszukiwania skutecznej metody pracy z głosem, jak również czysty przypadek (jeśli istnieją przypadki) naprowadziły mnie na Estill Voice Training. Miałem przyjemność studiować tę metodę w Londynie pod okiem niesamowitych Maureen Scott, Charlotte Xerri oraz Anne Marie-Speed.",
-    "estillParamSecond": "W 2019 zdobyłem tytuł Estill Master Trainer (EMT) i stałem pierwszym certyfikowanym nauczycielem Estill w Polsce.",
-    "workWithMe": "Zapraszam do współpracy!"
+    "education_param": "Ukończyłem studia na Wydziale Aktorskim w Akademii Teatralnej w Warszawie oraz kurs musicalowy w Guildhall School of Music and Drama w Londynie.",
+    "estcooperation_with_theatersill_param_first": "Moje poszukiwania skutecznej metody pracy z głosem, jak również czysty przypadek (jeśli istnieją przypadki) naprowadziły mnie na Estill Voice Training. Miałem przyjemność studiować tę metodę w Londynie pod okiem niesamowitych Maureen Scott, Charlotte Xerri oraz Anne Marie-Speed.",
+    "estill_param_second": "W 2019 zdobyłem tytuł Estill Master Trainer (EMT) i stałem pierwszym certyfikowanym nauczycielem Estill w Polsce.",
+    "daria_iwinska_param": "Bardzo ważną postacią w mojej drodze artystycznej jest Pani Profesor Daria Iwińska, którą spotkałem w Akademii Teatralnej, gdzie uczyła mnie impostacji głosu. Zaispirowany jej osobą nie tracę cierpliwości i poszukuję naturalnego głosu u siebie i moich studentów.",
+    "cooperation_with_theaters": "Jako aktor współpracowałem z teatrami dramatycznymi i muzycznymi występując m.in. w musicalach Les Miserables, Jesus Christ Superstar (Teatr Muzyczny w  Łodzi) Shrek (Teatr Muzyczny w Gdyni), The Rocky Horror Show (Och-Teatr w Warszawie), Jerry Springer – The Opera (Teatr Capitol we Wrocławiu), La Cage aux Folles (Teatr Komedia w Warszawie), Sweeney Todd (Teatr Rozrywki w Chorzowie) oraz spektaklach Chory z urojenia (Teatr 6-te Piętro w Warszawie), Panny Wilka (Teatr Studio w Warszawie), Balladyna (Teatr Narodowy w Warszawie) i Wesele (Teatr STU w Krakowie). Przez kilka ostatnich lat byłem związany z Teatrem Muzycznym w Łodzi, gdzie stworzyłem role w musicalu Les Miserables oraz Jesus Christ Super Star. Współpracuję ze Studiem Accantus.",
+    "other_artistic_endeavors": "Mam w swoim dorobku płytę zatytułowaną Kantata Jazzowa (teksty: Michał Rusinek, kompozycje: Ignacy Jan Wiśniewski) oraz koncerty m.in. trasa koncertowa Accantus Live 2.0, koncert Musicalove w Teatrze Rampa w Warszawie, koncerty Step by Step oraz z Wiednia do Rio w Teatrze Muzycznym w Łodzi oraz solowy recital musicalowy Here I come.",
+    "end_param": "Wierzę, że praca nad głosem powinna być dopasowana do indywidualnych potrzeb i stylu uczącego się.",
+    "work_with_me": "Zapraszam do współpracy!"
+  },
+  "offer": {
+    "quotation": "Każdy ma piękny głos. Tylko musi wiedzieć, jak go użyć.",
+    "individual_vocal_classes": "INDYWIDUALNE ZAJĘCIA WOKALNE",
+    "individual_description": "Zajęcia kieruję do profesjonalistów oraz tych którzy stawiają swoje pierwsze kroki w temacie śpiewania czy posługiwania się głosem. W swojej pracy łączę moje doświadczenia w pracy z Estill Voice Training, klasycznym treningiem śpiewu, treningiem głosu aktora, pracy na scenie i w studio oraz pracy z ciałem (m.in. Feldenkrais, Joga, Pilates).",
+    "individual_end": "Zajęcia trwają 60 min",
+
+    "estill_voice_training": "WPROWADZENIE DO ESTILL VOICE TRAINING",
+    "estill_voice_training_about_course": "To jednodniowy kurs na którym dowiesz się o podstawach treningu głosu Estill. Zajęcia mają formę wykładu wypełnionego praktycznymi ćwiczeniami.",
+    "estill_voice_training_about_estill_model": "Model Estill jest znany na całym świecie z ćwiczeń zwanych Figurami i Jakościami Głosu. Ćwiczenia te pomagają zdobyć precyzyjną i elastyczną kontrolę nad głosem.",
+    "estill_voice_training_level_of_advancement": "Poziom zaawansowania nie ma tutaj znaczenia. Informacje z anatomii są poparte licznymi obrazkami, filmami video oraz ćwiczeniami, które natychmiast pozwalają odczuć gdzie dana struktura znajduje się w ciele oraz jak jej używać.",
+    "estill_voice_training_follow_events": "Aby przeczytać nieco więcej o kursie i się na niego zarejestrować odsyłam do zakładki WYDARZENIA, gdzie będę na bieżąco informował o nadchodzacych kursach.",
+
+    "concerts": "KONCERTY",
+    "concerts_description": "Oferuję koncerty solo lub duecie/trio przy akompaniamencie fortepianu. Demo z dotychczasowych koncertów dostępne w zakładce VIDEO."
   },
   "download_cv": "Download CV",
   "read_more": "Read more"

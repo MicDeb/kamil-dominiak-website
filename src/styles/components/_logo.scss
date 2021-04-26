@@ -1,12 +1,54 @@
+$logoSize: 3rem;
+$logoBorderWidth: .01rem;
+
 .logo {
-  position: relative;
-  font-size: $font-size-lg;
-  color: $font-color-headers;
-  font-family: $font-family-secondary;
-  font-weight: $font-weight-bold;
-  letter-spacing: .2rem;
-  margin-bottom: $gap * 4;
-  height: 30px;
-  display: flex;
-  align-items: center;
+  &__item {
+    width: $logoSize;
+    height: $logoSize;
+    position: relative;
+    transform: rotate(-45deg);
+    animation: spinnerAnimate 2.5s ease;
+
+    p {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      span {
+        width: calc(#{$logoSize} / 2);
+        height: calc(#{$logoSize} / 2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: $font-family-secondary;
+        font-size: calc(#{$logoSize} * .3);
+      }
+
+      &:nth-child(2) {
+        span {
+          transform: rotate(-180deg);
+        }
+      }
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: $logoBorderWidth;
+      background: $font-color;
+      top: 50%;
+      left: 0;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      height: 100%;
+      width: $logoBorderWidth;
+      background: $font-color;
+      top: 0;
+      left: 50%;
+    }
+  }
 }

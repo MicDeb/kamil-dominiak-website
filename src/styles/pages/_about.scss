@@ -1,6 +1,11 @@
-.home-page {
+.about-page {
   &__hero {
-    &--carousel {
+    &--middle {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+    &--img {
+      margin-bottom: $gap;
       .aspectratio-content {
         div {
           height: 100%;
@@ -34,8 +39,13 @@
     @media screen and (min-width: $desktop) {
       @include hero-container-desktop;
 
-      &--carousel.aspectratio-container.fit-height {
+      &--img.aspectratio-container.fit-height {
         @include hero-img-desktop;
+        margin-bottom: 0;
+
+        img {
+          padding: $gap;
+        }
       }
 
       &--text {
