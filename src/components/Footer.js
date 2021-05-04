@@ -12,24 +12,31 @@ export default function Footer() {
   const { Link } = Typography;
   const year = new Date().getFullYear();
   return (
-    <>
-      <Row justify='center'>
-        <Col xs={24}>
-          {`© ${ year } Kamil Dominiak`}
-        </Col>
-        <Col xs={24}>
-          {`${ t('mail') }: ${ contact.mail }`}
-        </Col>
-      </Row>
-      <Row justify='center'>
-        <Col xs={24}>
-          <Space>
-            {map(socialNavigationItems, (item) => (
-              <Link href={item.location}>{item.name}</Link>
-            ))}
-          </Space>
-        </Col>
-      </Row>
-    </>
+    <Row justify='center'>
+      <Col
+        xs={24}
+        md={8}
+      >
+        {`© ${ year } Kamil Dominiak`}
+      </Col>
+
+      <Col
+        xs={24}
+        md={8}
+      >
+        {`${ t('mail') }: ${ contact.mail }`}
+      </Col>
+
+      <Col
+        xs={24}
+        md={8}
+      >
+        <Space>
+          {map(socialNavigationItems, (item) => (
+            <Link href={item.location}>{item.name}</Link>
+          ))}
+        </Space>
+      </Col>
+    </Row>
   );
 }

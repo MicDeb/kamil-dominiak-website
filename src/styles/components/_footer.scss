@@ -1,6 +1,11 @@
 .footer {
   line-height: 20px;
-  border-top: 1px solid $font-color;
+  border-top: 1px solid $nav-grey;
   padding: $gap-sm 0;
   text-align: center;
+
+  @media screen and (min-width: $tablet-lg) {
+    padding: $gap-lg 0;
+    letter-spacing: 2px;
+  }
 }
