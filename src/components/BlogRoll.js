@@ -17,8 +17,6 @@ function BlogRoll({ data, postsCount }) {
        && slice(posts, 0, postsCount || posts.length).map(({ node: post }) => (
          <Col
            xs={24}
-           md={12}
-           lg={8}
            key={post.id}
          >
            <article
@@ -26,41 +24,57 @@ function BlogRoll({ data, postsCount }) {
                post.frontmatter.featuredpost ? 'is-featured' : ''
              }`}
            >
-             <header>
-               {post.frontmatter.featuredimage ? (
-                 <div className='featured-thumbnail'>
-                   <PreviewCompatibleImage
-                     imageInfo={{
-                       image: post.frontmatter.featuredimage,
-                       alt: `featured image thumbnail for post ${ post.frontmatter.title }`,
-                     }}
-                   />
-                 </div>
-               ) : null}
-               <div className='post-meta'>
-                 <div>
-                   <Link
-                     className='title'
-                     to={post.fields.slug}
-                   >
-                     <Title level={4}>{post.frontmatter.title}</Title>
-                   </Link>
-                 </div>
+             <Row gutter={{
+               xs: 8, sm: 16, md: 24, lg: 32,
+             }}
+             >
+               <Col
+                 xs={24}
+                 md={8}
+               >
+                 {post.frontmatter.featuredimage ? (
+                   <div className='featured-thumbnail'>
+                     <PreviewCompatibleImage
+                       imageInfo={{
+                         image: post.frontmatter.featuredimage,
+                         alt: `featured image thumbnail for post ${ post.frontmatter.title }`,
+                       }}
+                     />
+                   </div>
+                 ) : null}
+               </Col>
+               <Col
+                 xs={24}
+                 md={16}
+               >
+                 <header>
+                   <div className='post-meta'>
+                     <div>
+                       <Link
+                         className='title'
+                         to={post.fields.slug}
+                       >
+                         <Title level={4}>{post.frontmatter.title}</Title>
+                       </Link>
+                     </div>
 
-                 <div>
-                   <span className='post-meta__date'>
-                     {post.frontmatter.date}
-                   </span>
-                 </div>
-               </div>
-             </header>
-             <Typography>
-               <Paragraph>
-                 {post.excerpt}
-               </Paragraph>
+                     <div>
+                       <span className='post-meta__date'>
+                         {post.frontmatter.date}
+                       </span>
+                     </div>
+                   </div>
+                 </header>
+                 <Typography>
+                   <Paragraph>
+                     {post.excerpt}
+                   </Paragraph>
 
-               <ReadMoreButton to={post.fields.slug} />
-             </Typography>
+                   <ReadMoreButton to={post.fields.slug} />
+                 </Typography>
+
+               </Col>
+             </Row>
            </article>
          </Col>
        ))}
@@ -104,7 +118,7 @@ export default () => (
                 featuredpost
                 featuredimage {
                   childImageSharp {
-                    fluid(maxWidth: 120, quality: 100) {
+                    fluid(maxWidth: 600, quality: 100) {
                       ...GatsbyImageSharpFluid
                     }
                   }
