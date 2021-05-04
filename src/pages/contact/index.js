@@ -24,7 +24,7 @@ export default function Contact() {
           </div>
         </div>
 
-        <Typography>
+        <Typography className='contact-page__hero--text'>
           <Typography>
             <Title level={3}>
               {t('contact.title')}
@@ -33,7 +33,7 @@ export default function Contact() {
           <Paragraph>
             {t('contact.subtitle')}
           </Paragraph>
-          <Paragraph strong>
+          <Paragraph className='contact-email' strong>
             {contact.mail}
           </Paragraph>
         </Typography>

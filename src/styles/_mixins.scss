@@ -48,3 +48,21 @@
   height: 70%;
   width: 70%;
 }
+
+@mixin page-title {
+  h3 {
+    font-size: 6vw;
+
+    @media screen and (min-width: $tablet-lg) {
+      font-size: 4vw;
+    }
+
+    @media screen and (min-width: $desktop) {
+      font-size: 3vw;
+    }
+
+    @media screen and (min-width: $desktop-xl) {
+      font-size: 2vw;
+    }
+  }
+}

@@ -15,6 +15,18 @@
       }
     }
 
+    &--text {
+      @include page-title;
+
+      .contact-email {
+        letter-spacing: 2px;
+
+        @media screen and (min-width: $tablet) {
+          letter-spacing: 3px;
+        }
+      }
+    }
+
     @media screen and (min-width: $desktop) {
       @include hero-container-desktop;
 
