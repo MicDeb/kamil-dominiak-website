@@ -1,9 +1,12 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import {
-  Col, Row, Typography, Divider,
+  Typography, Divider,
 } from 'antd';
 import { useTranslation } from 'react-i18next';
-import SectionHeading from '../../components/SectionHeading';
+import IndividualLessonsPhoto from 'src/img/main/kamil-dominiak-voice-traninig.jpg';
+import ConcertPhoto from 'src/img/main/kamil-dominiak-concert.jpg';
+import EstilPhoto from 'src/img/estill/CertificationBadges_2020-MasterTrainer.png';
 
 export default function Offer() {
   const { t } = useTranslation();
@@ -12,84 +15,104 @@ export default function Offer() {
   } = Typography;
   return (
     <section>
-      <Row>
-        <Col>
+      <Helmet title='Kamil Dominiak - official website | offer' />
+
+      <div className='offer-page__title'>
+        <div className='offer-page__title--container'>
           <Title
             level={2}
-            className='text-italic'
+            className='text-italic text-center'
           >
             {t('offer.quotation')}
           </Title>
           <Paragraph className='text-right'>
             Jo Estill
           </Paragraph>
-        </Col>
-      </Row>
+        </div>
+      </div>
 
       <Divider />
 
-      <Row>
-        <Col>
-          <SectionHeading
-            title='offer.individual_vocal_classes'
-          />
-        </Col>
-        <Col>
+      <div className='offer-page__hero'>
+        <div className='offer-page__hero--img aspectratio-container aspect-2-3 fit-height'>
+          <div className='aspectratio-content'>
+            <img
+              src={IndividualLessonsPhoto}
+              alt='Kamil Dominiak'
+            />
+          </div>
+        </div>
+
+        <Typography className='offer-page__hero--text'>
+          <Title level={3}>
+            {t('offer.individual_vocal_classes')}
+          </Title>
+
           <Paragraph>
             {t('offer.individual_description')}
           </Paragraph>
-        </Col>
-        <Col>
+
           <Paragraph>
             {t('offer.individual_end')}
           </Paragraph>
-        </Col>
-      </Row>
 
-      <Divider />
+        </Typography>
+      </div>
 
-      <Row>
-        <Col>
-          <SectionHeading
-            title='offer.estill_voice_training'
-          />
-        </Col>
-        <Col>
+      <div className='offer-page__hero offer-page__hero--middle'>
+        <Typography className='offer-page__hero--text'>
+          <Title level={3}>
+            {t('offer.estill_voice_training')}
+          </Title>
+
           <Paragraph>
             {t('offer.estill_voice_training_about_course')}
           </Paragraph>
-        </Col>
-        <Col>
+
           <Paragraph>
             {t('offer.estill_voice_training_about_estill_model')}
           </Paragraph>
-        </Col>
-        <Col>
+
           <Paragraph>
             {t('offer.estill_voice_training_level_of_advancement')}
           </Paragraph>
-        </Col>
-        <Col>
+
           <Paragraph>
             {t('offer.estill_voice_training_follow_events')}
           </Paragraph>
-        </Col>
-      </Row>
+        </Typography>
 
-      <Divider />
+        <div className='offer-page__hero--img aspectratio-container aspect-2-3 fit-height'>
+          <div className='aspectratio-content'>
+            <img
+              src={EstilPhoto}
+              alt='Kamil Dominiak'
+            />
+          </div>
+        </div>
+      </div>
 
-      <Row>
-        <Col>
-          <SectionHeading
-            title='offer.concerts'
-          />
-        </Col>
-        <Col>
+      <div className='offer-page__hero'>
+        <div className='offer-page__hero--img aspectratio-container aspect-2-3 fit-height'>
+          <div className='aspectratio-content'>
+            <img
+              src={ConcertPhoto}
+              alt='Kamil Dominiak'
+            />
+          </div>
+        </div>
+
+        <Typography className='offer-page__hero--text'>
+          <Title level={3}>
+            {t('offer.concerts')}
+          </Title>
+
           <Paragraph>
             {t('offer.concerts_description')}
           </Paragraph>
-        </Col>
-      </Row>
+
+        </Typography>
+      </div>
 
     </section>
   );
