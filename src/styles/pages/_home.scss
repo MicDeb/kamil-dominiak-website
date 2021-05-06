@@ -2,6 +2,7 @@
   &__hero {
     &--carousel {
       .aspectratio-content {
+        display: block;
         div {
           height: 100%;
 

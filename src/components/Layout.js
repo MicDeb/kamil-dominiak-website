@@ -1,11 +1,12 @@
-/* eslint-disable */
 import '../styles/all.scss';
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import map from 'lodash/map';
 import { Helmet } from 'react-helmet';
 import { withPrefix } from 'gatsby';
-import { Layout, Row, Col, Typography } from 'antd';
+import {
+  Layout, Row, Col, Typography,
+} from 'antd';
 import Navigation from './navigation/Navigation';
 import PageFooter from './Footer';
 import useSiteMetadata from './SiteMetadata';
@@ -59,11 +60,6 @@ const TemplateWrapper = ({ children, location }) => {
           sizes='16x16'
         />
 
-        <link
-          rel='mask-icon'
-          href={`${ withPrefix('/') }img/safari-pinned-tab.svg`}
-          color='#ff4400'
-        />
         <meta
           name='theme-color'
           content='#fff'
@@ -83,7 +79,7 @@ const TemplateWrapper = ({ children, location }) => {
         />
         <meta
           property='og:image'
-          content={`${ withPrefix('/') }img/og-image.jpg`}
+          content={`${ withPrefix('/') }img/kamil-dominiak004.jpg`}
         />
       </Helmet>
 
@@ -94,15 +90,14 @@ const TemplateWrapper = ({ children, location }) => {
         </Header>
         <Content>
           <div id='main-container'>
-            {loading ?
-              <Spinner />
-              :
-              <Row>
-                <Col xs={24}>
-                  {children}
-                </Col>
-              </Row>
-            }
+            {loading && <Spinner />}
+
+            <Row>
+              <Col xs={24}>
+                {children}
+              </Col>
+            </Row>
+
             <div className='social-media-vertical-nav'>
               {map(socialNavigationItems, (item) => (
                 <Link href={item.location}>{item.name}</Link>

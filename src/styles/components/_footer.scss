@@ -4,8 +4,18 @@
   padding: $gap-sm 0;
   text-align: center;
 
+  .estill-logo {
+    width: 150px;
+    background-image: url("../img/estill/EstillVoiceTraining_Logo_HORIZONTAL_RGB.png");
+    background-position: center;
+    height: 50px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
   @media screen and (min-width: $tablet-lg) {
-    padding: $gap-lg 0;
+    padding: $gap 0;
     letter-spacing: 2px;
+    font-size: $font-size-sm;
   }
 }

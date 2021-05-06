@@ -4,6 +4,13 @@
   box-sizing: $val;
 }
 
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
 @mixin border-bottom() {
   border-bottom: 1px solid $light-grey;
 }

@@ -14,7 +14,8 @@ $letterAnimateTime: 3s;
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: spinnerContainerAnimate 1s ease 1.5s;
+  animation: spinnerContainerAnimate 1s ease 1.5s 1;
+  animation-fill-mode: forwards;
 
   &__item {
     width: $spinnerSize;
