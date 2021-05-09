@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 const { fmImagesToRelative } = require('gatsby-remark-relative-images');
@@ -23,8 +22,9 @@ exports.createPages = ({ actions, graphql }) => {
         }
       }
     }
-  `).then((result) => {
+  `).then((result) => { // eslint-disable-line consistent-return
     if (result.errors) {
+      // eslint-disable-next-line no-console
       result.errors.forEach((e) => console.error(e.toString()));
       return Promise.reject(result.errors);
     }
@@ -58,6 +58,18 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       name: 'slug',
       node,
       value,
+    });
+  }
+};
+
+exports.onCreateWebpackConfig = ({ stage, actions }) => {
+  if (stage.startsWith('develop')) {
+    actions.setWebpackConfig({
+      resolve: {
+        alias: {
+          'react-dom': '@hot-loader/react-dom',
+        },
+      },
     });
   }
 };

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { Col, Row } from 'antd';
+import {
+  Col, Row, Button, Tooltip,
+} from 'antd';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
 const today = new Date();
 const initialMonth = today.getMonth();
@@ -35,6 +38,9 @@ const days = {
 export function CalendarTable(props) {
   const {
     eventsByYears,
+    isEdited,
+    editEvent,
+    removeEvent,
   } = props;
 
   const { t } = useTranslation();
@@ -115,7 +121,10 @@ export function CalendarTable(props) {
                 className='calendar__single-event'
                 key={event.day}
               >
-                <Col className='calendar__single-event--day'>
+                <Col
+                  xs={24}
+                  className='calendar__single-event--day'
+                >
                   <span className='day-date'>{getCustomDateFormat(event.day, selectedMonthId)}</span>
                   <span className='day-name'>{getEventDayName(selectedYear, selectedMonthId, event.day)}</span>
                 </Col>
@@ -123,7 +132,8 @@ export function CalendarTable(props) {
                 {event.dayEvents.map((dayEvent, index) => {
                   const hasSeparator = getSeparator(event, index);
                   return (
-                    <div
+                    <Col
+                      xs={24}
                       key={event.day + dayEvent.time}
                       className='day-events'
                     >
@@ -136,7 +146,7 @@ export function CalendarTable(props) {
                           </span>
                         </Col>
                         <Col
-                          xs={12}
+                          xs={isEdited ? 10 : 12}
                           className={`${ hasSeparator ? 'separate' : '' }`}
                         >
                           <p className='event-title'>{dayEvent.title}</p>
@@ -150,7 +160,7 @@ export function CalendarTable(props) {
                             )}
                         </Col>
                         <Col
-                          xs={8}
+                          xs={isEdited ? 6 : 8}
                           className={`${ hasSeparator ? 'separate' : '' }`}
                         >
                           <a
@@ -160,8 +170,30 @@ export function CalendarTable(props) {
                             {dayEvent.place}
                           </a>
                         </Col>
+                        {isEdited && (
+                          <Col xs={4}>
+                            <div className='calendar__actions'>
+                              <Tooltip title='Edytuj'>
+                                <Button
+                                  type='primary'
+                                  shape='circle'
+                                  icon={<EditOutlined />}
+                                  onClick={() => editEvent(dayEvent.id)}
+                                />
+                              </Tooltip>
+                              <Tooltip title='Usuń'>
+                                <Button
+                                  type='primary'
+                                  shape='circle'
+                                  icon={<DeleteOutlined />}
+                                  onClick={() => removeEvent(dayEvent.id)}
+                                />
+                              </Tooltip>
+                            </div>
+                          </Col>
+                        )}
                       </Row>
-                    </div>
+                    </Col>
                   );
                 })}
               </Row>
@@ -175,6 +207,15 @@ export function CalendarTable(props) {
   );
 }
 
+CalendarTable.defaultProps = {
+  isEdited: false,
+  editEvent: () => null,
+  removeEvent: () => null,
+};
+
 CalendarTable.propTypes = {
   eventsByYears: PropTypes.object.isRequired,
+  editEvent: PropTypes.func,
+  isEdited: PropTypes.bool,
+  removeEvent: PropTypes.func,
 };

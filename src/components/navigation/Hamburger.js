@@ -19,6 +19,6 @@ Hamburger.defaultProps = {
 };
 
 Hamburger.propTypes = {
-  isOpen: PropTypes.bool,
   setOpen: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool,
 };

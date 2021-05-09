@@ -37,9 +37,9 @@ const PreviewCompatibleImage = ({ imageInfo }) => {
 
 PreviewCompatibleImage.propTypes = {
   imageInfo: PropTypes.shape({
+    image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
     alt: PropTypes.string,
     childImageSharp: PropTypes.object,
-    image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
     style: PropTypes.object,
   }).isRequired,
 };

@@ -100,7 +100,12 @@ const TemplateWrapper = ({ children, location }) => {
 
             <div className='social-media-vertical-nav'>
               {map(socialNavigationItems, (item) => (
-                <Link href={item.location}>{item.name}</Link>
+                <Link
+                  key={item.location}
+                  href={item.location}
+                >
+                  {item.name}
+                </Link>
               ))}
             </div>
           </div>

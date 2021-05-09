@@ -33,7 +33,12 @@ export default function Footer() {
       >
         <Space>
           {map(socialNavigationItems, (item) => (
-            <Link href={item.location}>{item.name}</Link>
+            <Link
+              key={item.location}
+              href={item.location}
+            >
+              {item.name}
+            </Link>
           ))}
         </Space>
       </Col>

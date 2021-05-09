@@ -5,3 +5,8 @@
 .date-picker {
   width: 100%;
 }
+
+.field__error {
+  color: $red;
+  font-size: $font-size-sm;
+}

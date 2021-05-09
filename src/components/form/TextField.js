@@ -2,27 +2,34 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useField } from 'formik';
 import { Input } from 'antd';
+import debounce from 'lodash/debounce';
 
 export default function TextField({ placeholder, ...props }) {
-  // eslint-disable-next-line no-unused-vars
   const [field, meta, helpers] = useField(props);
   const [value, setValue] = useState(field.value);
 
+  const handleChange = ({ target }) => setValue(target.value);
+
+  const setFieldValue = () => helpers.setValue(value);
+
+  const debouncedFieldValue = debounce(setFieldValue, 500, { maxWait: 1000 });
+
   useEffect(() => {
-    helpers.setValue(value);
+    debouncedFieldValue();
   }, [value]);
 
-  useEffect(() => {
-    setValue(field.value);
-  }, [field.value]);
-
   return (
-    <Input
-      placeholder={placeholder}
-      value={value}
-      onChange={({ target }) => setValue(target.value)}
-      {...props}
-    />
+    <>
+      <Input
+        placeholder={placeholder}
+        value={value}
+        onChange={handleChange}
+        {...props}
+      />
+      {meta.error && meta.touched && (
+        <div className='field__error'>{meta.error}</div>
+      )}
+    </>
   );
 }
 
@@ -31,6 +38,5 @@ TextField.defaultProps = {
 };
 
 TextField.propTypes = {
-  field: PropTypes.object.isRequired,
   placeholder: PropTypes.string,
 };

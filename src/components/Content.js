@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 export const HTMLContent = ({ content, className }) => (
   <div
     className={className}
+    /* eslint-disable-next-line react/no-danger */
     dangerouslySetInnerHTML={{ __html: content }}
   />
 );
@@ -18,8 +19,8 @@ Content.defaultProps = {
 };
 
 Content.propTypes = {
-  content: PropTypes.node,
   className: PropTypes.string,
+  content: PropTypes.node,
 };
 
 HTMLContent.propTypes = Content.propTypes;

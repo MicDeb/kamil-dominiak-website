@@ -33,7 +33,10 @@ export default function Contact() {
           <Paragraph>
             {t('contact.subtitle')}
           </Paragraph>
-          <Paragraph className='contact-email' strong>
+          <Paragraph
+            className='contact-email'
+            strong
+          >
             {contact.mail}
           </Paragraph>
         </Typography>

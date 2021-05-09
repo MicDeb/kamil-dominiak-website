@@ -1,11 +1,20 @@
 export const events = {
   2021: {
-    0: [
+    4: [
       {
         day: 6,
         dayEvents: [
           {
+            id: 1,
             time: 19.00,
+            title: 'Footloose',
+            role: '',
+            place: 'Teatr Muzyczny w Poznaniu',
+            tickets: 'https://teatr-muzyczny.pl/',
+          },
+          {
+            id: 2,
+            time: 21.00,
             title: 'Footloose',
             role: '',
             place: 'Teatr Muzyczny w Poznaniu',
@@ -17,6 +26,7 @@ export const events = {
         day: 7,
         dayEvents: [
           {
+            id: 3,
             time: 15.00,
             title: 'Footloose',
             role: '',
@@ -24,6 +34,7 @@ export const events = {
             tickets: 'https://teatr-muzyczny.pl/',
           },
           {
+            id: 4,
             time: 19.00,
             title: 'Footloose',
             role: '',
@@ -36,6 +47,7 @@ export const events = {
         day: 8,
         dayEvents: [
           {
+            id: 5,
             time: 17.00,
             title: 'Footloose',
             role: '',
@@ -48,6 +60,7 @@ export const events = {
         day: 13,
         dayEvents: [
           {
+            id: 6,
             time: 19.00,
             title: 'OPERA ZA TRZY GROSZE',
             role: 'Mackie Majcher',
@@ -60,6 +73,7 @@ export const events = {
         day: 14,
         dayEvents: [
           {
+            id: 7,
             time: 18.00,
             title: 'OPERA ZA TRZY GROSZE',
             role: 'Mackie Majcher',
@@ -72,6 +86,7 @@ export const events = {
         day: 15,
         dayEvents: [
           {
+            id: 8,
             time: 17.30,
             title: 'OPERA ZA TRZY GROSZE',
             role: 'Mackie Majcher',
@@ -84,6 +99,7 @@ export const events = {
         day: 20,
         dayEvents: [
           {
+            id: 9,
             time: 19.00,
             title: 'ROCK OF AGES',
             role: '',
@@ -96,6 +112,7 @@ export const events = {
         day: 21,
         dayEvents: [
           {
+            id: 10,
             time: 15.00,
             title: 'ROCK OF AGES',
             role: '',
@@ -103,6 +120,7 @@ export const events = {
             tickets: 'http://teatrsyrena.pl/',
           },
           {
+            id: 11,
             time: 19.00,
             title: 'ROCK OF AGES',
             role: '',
@@ -115,6 +133,7 @@ export const events = {
         day: 22,
         dayEvents: [
           {
+            id: 12,
             time: 15.00,
             title: 'ROCK OF AGES',
             role: '',
@@ -127,6 +146,7 @@ export const events = {
         day: 26,
         dayEvents: [
           {
+            id: 13,
             time: 19.00,
             title: 'CZAROWNICE Z EASTWICK',
             role: '',
@@ -139,6 +159,7 @@ export const events = {
         day: 27,
         dayEvents: [
           {
+            id: 14,
             time: 19.00,
             title: 'CZAROWNICE Z EASTWICK',
             role: '',
@@ -151,6 +172,7 @@ export const events = {
         day: 28,
         dayEvents: [
           {
+            id: 15,
             time: 15.00,
             title: 'CZAROWNICE Z EASTWICK',
             role: '',
@@ -158,6 +180,7 @@ export const events = {
             tickets: 'http://teatrsyrena.pl/',
           },
           {
+            id: 16,
             time: 19.00,
             title: 'CZAROWNICE Z EASTWICK',
             role: '',
@@ -170,6 +193,7 @@ export const events = {
         day: 29,
         dayEvents: [
           {
+            id: 17,
             time: 15.00,
             title: 'CZAROWNICE Z EASTWICK',
             role: '',
@@ -177,6 +201,7 @@ export const events = {
             tickets: 'http://teatrsyrena.pl/',
           },
           {
+            id: 18,
             time: 19.00,
             title: 'CZAROWNICE Z EASTWICK',
             role: '',
@@ -186,11 +211,12 @@ export const events = {
         ],
       },
     ],
-    1: [
+    5: [
       {
         day: 4,
         dayEvents: [
           {
+            id: 19,
             time: 15.00,
             title: 'RODZINA ADDAMSÓW',
             role: '',
@@ -198,6 +224,7 @@ export const events = {
             tickets: 'http://teatrsyrena.pl/',
           },
           {
+            id: 20,
             time: 19.00,
             title: 'RODZINA ADDAMSÓW',
             role: '',
@@ -210,6 +237,7 @@ export const events = {
         day: 5,
         dayEvents: [
           {
+            id: 21,
             time: 15.00,
             title: 'RODZINA ADDAMSÓW',
             role: '',
@@ -217,6 +245,7 @@ export const events = {
             tickets: 'http://teatrsyrena.pl/',
           },
           {
+            id: 22,
             time: 19.00,
             title: 'RODZINA ADDAMSÓW',
             role: '',
@@ -229,6 +258,7 @@ export const events = {
         day: 25,
         dayEvents: [
           {
+            id: 23,
             time: 19.00,
             title: 'Sunset Boulevard - PREMIERA',
             role: '',
@@ -238,11 +268,12 @@ export const events = {
         ],
       },
     ],
-    2: [
+    6: [
       {
         day: 4,
         dayEvents: [
           {
+            id: 24,
             time: 15.00,
             title: 'RODZINA ADDAMSÓW',
             role: '',
@@ -250,6 +281,7 @@ export const events = {
             tickets: 'http://teatrsyrena.pl/',
           },
           {
+            id: 25,
             time: 19.00,
             title: 'RODZINA ADDAMSÓW',
             role: '',
@@ -262,6 +294,7 @@ export const events = {
         day: 5,
         dayEvents: [
           {
+            id: 26,
             time: 15.00,
             title: 'RODZINA ADDAMSÓW',
             role: '',
@@ -269,6 +302,7 @@ export const events = {
             tickets: 'http://teatrsyrena.pl/',
           },
           {
+            id: 27,
             time: 19.00,
             title: 'RODZINA ADDAMSÓW',
             role: '',
@@ -281,6 +315,7 @@ export const events = {
         day: 25,
         dayEvents: [
           {
+            id: 28,
             time: 19.00,
             title: 'Sunset Boulevard - PREMIERA',
             role: '',

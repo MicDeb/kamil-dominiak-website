@@ -1,30 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useField } from 'formik';
 import { DatePicker } from 'antd';
+import 'moment/locale/pl';
+import locale from 'antd/es/date-picker/locale/pl_PL';
 
-export default function DateField({ placeholder, name, ...props }) {
-  // eslint-disable-next-line no-unused-vars
+export default function DateField({ placeholder, ...props }) {
   const [field, meta, helpers] = useField(props);
   const [value, setValue] = useState(field.value);
 
-  useEffect(() => {
+  const handleChange = (momentDate) => setValue(momentDate);
+
+  const setFieldValue = useCallback(() => {
     helpers.setValue(value);
-  }, [value]);
+  }, [helpers, value]);
 
   useEffect(() => {
-    setValue(field.value);
-  }, [field.value]);
-  
+    setFieldValue();
+  }, [value]);
+
   return (
-    <DatePicker
-      size='large'
-      className='date-picker'
-      placeholder={placeholder}
-      value={value}
-      onChange={({ target }) => setValue(target.value)}
-      {...props}
-    />
+    <>
+      <DatePicker
+        locale={locale}
+        size='large'
+        className='date-picker'
+        placeholder={placeholder}
+        onChange={handleChange}
+        {...props}
+      />
+      {meta.error && meta.touched && (
+        <div className='field__error'>{meta.error}</div>
+      )}
+    </>
   );
 }
 
@@ -33,6 +41,5 @@ DateField.defaultProps = {
 };
 
 DateField.propTypes = {
-  name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
 };
