@@ -1,6 +1,7 @@
 {
   "as": "as",
   "at": "at",
+  "mail": "e-mail",
   "navigation": {
     "home": "Home",
     "about": "About",
@@ -19,7 +20,8 @@
     "subtitle": "Would you want to talk about something? Just send me your message and I will happily chat"
   },
   "calendar": {
-    "no_events": "There are no events for the month"
+    "no_events": "There are no events for the month",
+    "log_in_to_add_events": "Login to add or edit events"
   },
   "video": "Video",
   "months": {

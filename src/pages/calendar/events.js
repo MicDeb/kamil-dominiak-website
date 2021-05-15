@@ -1,9 +1,10 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useContext } from 'react';
+import { UserContext } from 'src/helpers/userContext';
 import EventForm from 'src/components/EventForm';
 import { events as eventsNew } from 'src/components/eventsNew';
 import { CalendarTable } from 'src/components/CalendarTable';
-import { Divider } from 'antd';
-import netlifyIdentity from 'netlify-identity-widget';
+import { Divider, Typography } from 'antd';
+import { useTranslation } from 'react-i18next';
 
 const initialValues = {
   eventStartDate: '',
@@ -17,13 +18,11 @@ const initialValues = {
 };
 
 export default function Events() {
-  useEffect(() => {
-    netlifyIdentity.init({
-      // APIUrl: 'https://kamil-dominiak-website.netlify.app',
-      namePlaceholder: 'some-placeholder-for-Name',
-      locale: 'pl',
-    });
-  }, []);
+  const user = useContext(UserContext);
+
+  // eslint-disable-next-line no-console
+  console.log('user', user);
+
   const editEvent = useCallback((id) => {
     // eslint-disable-next-line no-console
     console.log(id);
@@ -33,28 +32,35 @@ export default function Events() {
     // eslint-disable-next-line no-console
     console.log(id);
   }, []);
+
+  const {
+    Title,
+  } = Typography;
+
+  const { t } = useTranslation();
+
   return (
-    <>
-      <button
-        type='button'
-        className='login-btn'
-        onClick={() => netlifyIdentity.open('login')}
-      >
-        LOG IN
-      </button>
+    !user ? (
+      <Typography>
+        <Title level={3}>
+          {t('calendar.log_in_to_add_events')}
+        </Title>
+      </Typography>
+    ) : (
+      <>
+        <EventForm
+          initialValues={initialValues}
+        />
 
-      <EventForm
-        initialValues={initialValues}
-      />
+        <Divider />
 
-      <Divider />
-
-      <CalendarTable
-        eventsByYears={eventsNew}
-        isEdited
-        editEvent={editEvent}
-        removeEvent={removeEvent}
-      />
-    </>
+        <CalendarTable
+          eventsByYears={eventsNew}
+          isEdited
+          editEvent={editEvent}
+          removeEvent={removeEvent}
+        />
+      </>
+    )
   );
 }

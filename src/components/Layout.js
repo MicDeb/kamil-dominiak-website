@@ -7,6 +7,7 @@ import { withPrefix } from 'gatsby';
 import {
   Layout, Row, Col, Typography,
 } from 'antd';
+import netlifyIdentity from 'netlify-identity-widget';
 import Navigation from './navigation/Navigation';
 import PageFooter from './Footer';
 import useSiteMetadata from './SiteMetadata';
@@ -14,10 +15,15 @@ import { withTrans } from '../i18n/withTrans';
 import Logo from './Logo';
 import Spinner from './Spinner';
 import { socialNavigationItems } from './navigation/navigationItems';
+import Login from './Login';
+import { UserContext } from '../helpers/userContext';
 
 const TemplateWrapper = ({ children, location }) => {
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const { title, description } = useSiteMetadata();
+
+  const { Provider: UserProvider } = UserContext;
 
   const { Header, Footer, Content } = Layout;
   const { Link } = Typography;
@@ -31,6 +37,27 @@ const TemplateWrapper = ({ children, location }) => {
       clearTimeout(timer);
     };
   }, [location]);
+
+  // eslint-disable-next-line no-console
+  console.log('location', location);
+
+  useEffect(() => {
+    if (location.pathname === '/calendar/events') {
+      netlifyIdentity.init({
+        container: '#identity-modal',
+        // APIUrl: 'https://kamil-dominiak-website.netlify.app',
+        namePlaceholder: 'some-placeholder-for-Name',
+        locale: 'pl',
+      });
+    }
+  }, [location.pathname]);
+
+  netlifyIdentity.on('login', (currentUser) => {
+    netlifyIdentity.close();
+    setUser(currentUser);
+  });
+
+  netlifyIdentity.on('logout', () => setUser(null));
 
   return (
     <>
@@ -84,37 +111,44 @@ const TemplateWrapper = ({ children, location }) => {
       </Helmet>
 
       <Layout>
-        <Header className='header'>
-          <Logo />
-          <Navigation location={location} />
-        </Header>
-        <Content>
-          <div id='main-container'>
-            {loading && <Spinner />}
-
-            <Row>
-              <Col xs={24}>
-                {children}
-              </Col>
-            </Row>
-
-            <div className='social-media-vertical-nav'>
-              {map(socialNavigationItems, (item) => (
-                <Link
-                  key={item.location}
-                  href={item.location}
-                >
-                  {item.name}
-                </Link>
-              ))}
+        <UserProvider value={user}>
+          <Header className='header'>
+            <Logo />
+            <div className='header__login-and-nav'>
+              {(user || location.pathname === '/calendar/events') && (
+                <Login />
+              )}
+              <Navigation location={location} />
             </div>
-          </div>
-        </Content>
-        <Footer className='footer'>
-          <PageFooter />
-        </Footer>
-      </Layout>
+          </Header>
+          <Content>
+            <div id='main-container'>
+              {loading && <Spinner />}
 
+              <Row>
+                <Col xs={24}>
+                  {children}
+                </Col>
+              </Row>
+
+              <div className='social-media-vertical-nav'>
+                {map(socialNavigationItems, (item) => (
+                  <Link
+                    key={item.location}
+                    href={item.location}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </Content>
+          <Footer className='footer'>
+            <PageFooter />
+          </Footer>
+          <div id='identity-modal' />
+        </UserProvider>
+      </Layout>
     </>
   );
 };

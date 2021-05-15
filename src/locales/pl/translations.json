@@ -1,6 +1,7 @@
 {
   "as": "jako",
   "at": "godz.",
+  "mail": "e-mail",
   "navigation": {
     "home": "Strona główna",
     "about": "O mnie",
@@ -19,7 +20,8 @@
     "subtitle": "Chcesz o czymś porozmawiać? Wyślij mi swoją wiadomość"
   },
   "calendar": {
-    "no_events": "Brak wydarzeń w danym miesiącu"
+    "no_events": "Brak wydarzeń w danym miesiącu",
+    "log_in_to_add_events": "Zaloguj się by dodać i edytować wydarzenia"
   },
   "video": "Video",
   "months": {
