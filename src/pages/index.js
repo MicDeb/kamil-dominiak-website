@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
 import {
@@ -8,7 +8,6 @@ import { homePagePhotos } from 'src/helpers/homePagePhotos';
 import BlogRoll from 'src/components/BlogRoll';
 import ReadMoreButton from 'src/components/ReadMoreButton';
 import SectionHeading from 'src/components/SectionHeading';
-import netlifyIdentity from 'netlify-identity-widget';
 
 const Index = () => {
   const { t } = useTranslation();
@@ -16,9 +15,6 @@ const Index = () => {
     Title, Paragraph,
   } = Typography;
 
-  useEffect(() => {
-    netlifyIdentity.init({});
-  }, []);
   return (
     <section className='section'>
       <Helmet title='Kamil Dominiak - official website' />

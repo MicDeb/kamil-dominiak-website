@@ -18,7 +18,11 @@ const initialValues = {
 
 export default function Events() {
   useEffect(() => {
-    netlifyIdentity.init({});
+    netlifyIdentity.init({
+      // APIUrl: 'https://kamil-dominiak-website.netlify.app',
+      namePlaceholder: 'some-placeholder-for-Name',
+      locale: 'pl',
+    });
   }, []);
   const editEvent = useCallback((id) => {
     // eslint-disable-next-line no-console
@@ -34,7 +38,7 @@ export default function Events() {
       <button
         type='button'
         className='login-btn'
-        onClick={() => netlifyIdentity.open()}
+        onClick={() => netlifyIdentity.open('login')}
       >
         LOG IN
       </button>
