@@ -38,9 +38,6 @@ const TemplateWrapper = ({ children, location }) => {
     };
   }, [location]);
 
-  // eslint-disable-next-line no-console
-  console.log('location', location);
-
   useEffect(() => {
     if (location.pathname === '/calendar/events') {
       netlifyIdentity.init({

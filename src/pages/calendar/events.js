@@ -1,10 +1,12 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import { UserContext } from 'src/helpers/userContext';
 import EventForm from 'src/components/EventForm';
 import { events as eventsNew } from 'src/components/eventsNew';
 import { CalendarTable } from 'src/components/CalendarTable';
 import { Divider, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
+import { confirmModal } from 'src/components/modal/confirmModal';
+import { Modal } from 'src/components/modal/Modal';
 
 const initialValues = {
   eventStartDate: '',
@@ -18,19 +20,13 @@ const initialValues = {
 };
 
 export default function Events() {
+  const [openEditModal, setOpenEditModal] = useState(false);
   const user = useContext(UserContext);
 
-  // eslint-disable-next-line no-console
-  console.log('user', user);
+  const toggleModal = () => setOpenEditModal((prevOpen) => !prevOpen);
 
-  const editEvent = useCallback((id) => {
-    // eslint-disable-next-line no-console
-    console.log(id);
-  }, []);
-
-  const removeEvent = useCallback((id) => {
-    // eslint-disable-next-line no-console
-    console.log(id);
+  const editEvent = useCallback(() => {
+    toggleModal();
   }, []);
 
   const {
@@ -58,8 +54,18 @@ export default function Events() {
           eventsByYears={eventsNew}
           isEdited
           editEvent={editEvent}
-          removeEvent={removeEvent}
+          removeEvent={confirmModal}
         />
+
+        <Modal
+          isModalVisible={openEditModal}
+          handleOk={toggleModal}
+          handleCancel={toggleModal}
+        >
+          <EventForm
+            initialValues={initialValues}
+          />
+        </Modal>
       </>
     )
   );
