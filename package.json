@@ -5,6 +5,7 @@
   "author": "Austin Green",
   "dependencies": {
     "@ant-design/icons": "^4.5.0",
+    "@apollo/client": "^3.3.18",
     "@reach/dialog": "^0.13.2",
     "@reach/tabs": "^0.13.2",
     "@reach/visually-hidden": "^0.13.2",

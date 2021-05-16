@@ -7,6 +7,7 @@ import { Divider, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { confirmModal } from 'src/components/modal/confirmModal';
 import { Modal } from 'src/components/modal/Modal';
+import { getEvents } from 'src/actions/getEvents';
 
 const initialValues = {
   eventStartDate: '',
@@ -22,6 +23,11 @@ const initialValues = {
 export default function Events() {
   const [openEditModal, setOpenEditModal] = useState(false);
   const user = useContext(UserContext);
+
+  const { data } = getEvents();
+
+  // eslint-disable-next-line no-console
+  console.log('getEvents', data);
 
   const toggleModal = () => setOpenEditModal((prevOpen) => !prevOpen);
 

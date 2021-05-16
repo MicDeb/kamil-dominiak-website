@@ -8,6 +8,9 @@ import {
   Layout, Row, Col, Typography,
 } from 'antd';
 import netlifyIdentity from 'netlify-identity-widget';
+import {
+  ApolloProvider, ApolloClient, HttpLink, InMemoryCache,
+} from '@apollo/client';
 import Navigation from './navigation/Navigation';
 import PageFooter from './Footer';
 import useSiteMetadata from './SiteMetadata';
@@ -17,6 +20,13 @@ import Spinner from './Spinner';
 import { socialNavigationItems } from './navigation/navigationItems';
 import Login from './Login';
 import { UserContext } from '../helpers/userContext';
+
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  link: new HttpLink({
+    uri: 'https://kamil-dominiak-website.netlify.app/.netlify/functions/graphql',
+  }),
+});
 
 const TemplateWrapper = ({ children, location }) => {
   const [user, setUser] = useState(null);
@@ -109,41 +119,44 @@ const TemplateWrapper = ({ children, location }) => {
 
       <Layout>
         <UserProvider value={user}>
-          <Header className='header'>
-            <Logo />
-            <div className='header__login-and-nav'>
-              {(user || location.pathname === '/calendar/events') && (
-                <Login />
-              )}
-              <Navigation location={location} />
-            </div>
-          </Header>
-          <Content>
-            <div id='main-container'>
-              {loading && <Spinner />}
-
-              <Row>
-                <Col xs={24}>
-                  {children}
-                </Col>
-              </Row>
-
-              <div className='social-media-vertical-nav'>
-                {map(socialNavigationItems, (item) => (
-                  <Link
-                    key={item.location}
-                    href={item.location}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
+          <ApolloProvider client={client}>
+            <Header className='header'>
+              <Logo />
+              <div className='header__login-and-nav'>
+                {(user || location.pathname === '/calendar/events') && (
+                  <Login />
+                )}
+                <Navigation location={location} />
               </div>
-            </div>
-          </Content>
-          <Footer className='footer'>
-            <PageFooter />
-          </Footer>
-          <div id='identity-modal' />
+            </Header>
+
+            <Content>
+              <div id='main-container'>
+                {loading && <Spinner />}
+
+                <Row>
+                  <Col xs={24}>
+                    {children}
+                  </Col>
+                </Row>
+
+                <div className='social-media-vertical-nav'>
+                  {map(socialNavigationItems, (item) => (
+                    <Link
+                      key={item.location}
+                      href={item.location}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </Content>
+            <Footer className='footer'>
+              <PageFooter />
+            </Footer>
+            <div id='identity-modal' />
+          </ApolloProvider>
         </UserProvider>
       </Layout>
     </>
