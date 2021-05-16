@@ -30,7 +30,12 @@ let eventId = 0;
 // Provide resolver functions for your schema fields
 const resolvers = {
   Query: {
-    events: () => Object.values(events),
+    events: (parent, args, { user }) => {
+      if (!user) {
+        return [];
+      }
+      return Object.values(events);
+    },
   },
   Mutation: {
     addEvent: (_, data) => {
@@ -49,7 +54,12 @@ const resolvers = {
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-
+  context: ({ context }) => {
+    if (context.clientContext.user) {
+      return { user: context.clientContext.user.sub };
+    }
+    return {};
+  },
   // By default, the GraphQL Playground interface and GraphQL introspection
   // is disabled in "production" (i.e. when `process.env.NODE_ENV` is `production`).
   //

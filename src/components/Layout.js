@@ -11,6 +11,7 @@ import netlifyIdentity from 'netlify-identity-widget';
 import {
   ApolloProvider, ApolloClient, HttpLink, InMemoryCache,
 } from '@apollo/client';
+import { setContext } from 'apollo-link-context';
 import fetch from 'cross-fetch';
 import Navigation from './navigation/Navigation';
 import PageFooter from './Footer';
@@ -22,12 +23,26 @@ import { socialNavigationItems } from './navigation/navigationItems';
 import Login from './Login';
 import { UserContext } from '../helpers/userContext';
 
+const authLink = setContext((_, { headers }) => {
+  const user = netlifyIdentity.currentUser();
+  const token = user.token.access_token;
+
+  return {
+    headers: {
+      ...headers,
+      Authorization: token ? `Bearer ${ token }` : '',
+    },
+  };
+});
+
+const httpLink = new HttpLink({
+  uri: 'https://kamil-dominiak-website.netlify.app/.netlify/functions/graphql',
+  fetch,
+});
+
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link: new HttpLink({
-    uri: 'https://kamil-dominiak-website.netlify.app/.netlify/functions/graphql',
-    fetch,
-  }),
+  link: authLink.concat(httpLink),
 });
 
 const TemplateWrapper = ({ children, location }) => {
