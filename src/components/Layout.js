@@ -11,6 +11,7 @@ import netlifyIdentity from 'netlify-identity-widget';
 import {
   ApolloProvider, ApolloClient, HttpLink, InMemoryCache,
 } from '@apollo/client';
+import fetch from 'cross-fetch';
 import Navigation from './navigation/Navigation';
 import PageFooter from './Footer';
 import useSiteMetadata from './SiteMetadata';
@@ -25,6 +26,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
     uri: 'https://kamil-dominiak-website.netlify.app/.netlify/functions/graphql',
+    fetch,
   }),
 });
 
