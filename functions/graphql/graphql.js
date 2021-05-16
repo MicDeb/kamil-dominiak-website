@@ -2,15 +2,47 @@ const { ApolloServer, gql } = require('apollo-server-lambda');
 
 // Construct a schema, using GraphQL schema language
 const typeDefs = gql`
+  type Event {
+    id: ID!
+    eventStartDate: String!
+    eventStartTime: String
+    eventEndDate: String
+    eventPlace: String!
+    eventName: String!
+    eventDescription: String
+    eventLink: String
+    eventRole: String
+  }
+
   type Query {
-    hello: String
+    allEvents: [Event]!
+  }
+  
+  type Mutation {
+    addEvent(eventStartDate: String!, eventPlace: String!, eventName: String!): Event
+    updateEvent(id: ID!, eventStartDate: String!, eventPlace: String!, eventName: String!): Event
   }
 `;
+
+const events = {};
+let eventId = 0;
 
 // Provide resolver functions for your schema fields
 const resolvers = {
   Query: {
-    hello: () => 'Hello world!',
+    events: () => Object.values(events),
+  },
+  Mutation: {
+    addEvent: (_, data) => {
+      eventId += 1;
+      const id = `key-${ eventId }`;
+      events[id] = { ...data, id };
+      return events[id];
+    },
+    updateEvent: (_, data) => {
+      events[data.id] = data;
+      return events[data.id];
+    },
   },
 };
 
