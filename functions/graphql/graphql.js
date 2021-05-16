@@ -15,7 +15,7 @@ const typeDefs = gql`
   }
 
   type Query {
-    allEvents: [Event]!
+    events: [Event]!
   }
   
   type Mutation {
