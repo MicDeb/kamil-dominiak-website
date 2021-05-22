@@ -1,4 +1,7 @@
-import React, { useCallback, useContext, useState } from 'react';
+import React, {
+  useCallback, useContext, useState, useEffect,
+} from 'react';
+import axios from 'axios';
 import { UserContext } from 'src/helpers/userContext';
 import EventForm from 'src/components/EventForm';
 import { events as eventsNew } from 'src/components/eventsNew';
@@ -7,7 +10,6 @@ import { Divider, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { confirmModal } from 'src/components/modal/confirmModal';
 import { Modal } from 'src/components/modal/Modal';
-import { getEvents } from 'src/actions/getEvents';
 
 const initialValues = {
   eventStartDate: '',
@@ -22,12 +24,24 @@ const initialValues = {
 
 export default function Events() {
   const [openEditModal, setOpenEditModal] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [events, setEvents] = useState(null);
   const user = useContext(UserContext);
 
-  const { data } = getEvents();
-
-  // eslint-disable-next-line no-console
-  console.log('getEvents', data);
+  useEffect(() => {
+    if (loading && !user) return;
+    if (!events) {
+      axios('/api/get-events').then((result) => {
+        if (result.status !== 200) {
+          setError(true);
+          return;
+        }
+        setEvents(result.data);
+        setLoading(false);
+      });
+    }
+  }, [events, user, loading]);
 
   const toggleModal = () => setOpenEditModal((prevOpen) => !prevOpen);
 
@@ -40,6 +54,9 @@ export default function Events() {
   } = Typography;
 
   const { t } = useTranslation();
+
+  // eslint-disable-next-line no-console
+  console.log('events', events);
 
   return (
     !user ? (
@@ -56,12 +73,14 @@ export default function Events() {
 
         <Divider />
 
-        <CalendarTable
-          eventsByYears={eventsNew}
-          isEdited
-          editEvent={editEvent}
-          removeEvent={confirmModal}
-        />
+        {!error && (
+          <CalendarTable
+            eventsByYears={eventsNew}
+            isEdited
+            editEvent={editEvent}
+            removeEvent={confirmModal}
+          />
+        )}
 
         <Modal
           isModalVisible={openEditModal}

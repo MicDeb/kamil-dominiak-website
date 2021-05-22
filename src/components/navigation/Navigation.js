@@ -14,7 +14,7 @@ import { navigationItems, socialNavigationItems } from './navigationItems';
 const Sidebar = Keyframes.Spring({
   // single items,
   open: { delay: 0, x: 0 },
-  // or async functions with side-effects
+  // or async functions_old with side-effects
   close: async (call) => {
     await delay(400);
     await call({ delay: 0, x: -100 });
