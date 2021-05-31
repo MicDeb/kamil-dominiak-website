@@ -88,12 +88,6 @@ module.exports = {
         modulePath: `${ __dirname }/src/cms/cms.js`,
       },
     },
-    {
-      resolve: 'gatsby-plugin-netlify-identity',
-      options: {
-        url: 'https://kamil-dominiak-website.netlify.app/',
-      },
-    },
     'gatsby-plugin-netlify', // make sure to keep it last in the array
   ],
 };

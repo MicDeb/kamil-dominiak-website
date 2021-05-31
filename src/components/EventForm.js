@@ -8,7 +8,7 @@ import TimeField from 'src/components/form/TimeField';
 import TextAreaField from 'src/components/form/TextAreaField';
 import EventValidation from 'src/helpers/validation/event';
 
-export default function EventForm({ initialValues }) {
+export default function EventForm({ initialValues, handleSubmit }) {
   return (
     <div>
       <h1>Dodaj wydarzenie do kalendarza</h1>
@@ -16,10 +16,7 @@ export default function EventForm({ initialValues }) {
         initialValues={initialValues}
         onSubmit={async (values, { setSubmitting }) => {
           setSubmitting(false);
-          // eslint-disable-next-line no-console
-          await new Promise((r) => setTimeout(r, 500));
-          // eslint-disable-next-line no-alert
-          alert(JSON.stringify(values, null, 2));
+          handleSubmit(values);
         }}
         validationSchema={EventValidation}
       >
@@ -99,5 +96,6 @@ export default function EventForm({ initialValues }) {
 }
 
 EventForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
   initialValues: PropTypes.object.isRequired,
 };

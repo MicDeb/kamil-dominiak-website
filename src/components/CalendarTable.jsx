@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
+import map from 'lodash/map';
+import uniq from 'lodash/uniq';
+import filter from 'lodash/filter';
+import moment from 'moment';
 import {
   Col, Row, Button, Tooltip,
 } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { confirmModal } from 'src/components/modal/confirmModal';
 
-const today = new Date();
-const initialMonth = today.getMonth();
-const initialYear = today.getFullYear();
+const initialMonth = moment().get('month');
+const initialYear = moment().get('year');
 
 const months = {
   0: 'january',
@@ -37,16 +41,33 @@ const days = {
 
 export function CalendarTable(props) {
   const {
-    eventsByYears,
     isEdited,
     editEvent,
     removeEvent,
+    events,
   } = props;
+  const [selectedMonthId, setSelectedMonth] = useState(initialMonth);
+  const [selectedYear, setSelectedYear] = useState(initialYear);
 
   const { t } = useTranslation();
 
-  const [selectedMonthId, setSelectedMonth] = useState(initialMonth);
-  const [selectedYear, setSelectedYear] = useState(initialYear);
+  const selectedMonthEvents = useMemo(() => (
+    filter(events, (event) => moment(event.eventStartDate, 'YYYY-MM')
+      .isSame(moment(`${ selectedYear }-${ selectedMonthId + 1 }`, 'YYYY-MM')))
+  ), [events, selectedMonthId, selectedYear]);
+
+  const selectedMonthDays = useMemo(() => (
+    uniq(map(selectedMonthEvents, (event) => moment(event.eventStartDate, 'YYYY-MM-DD').date()))
+  ), [selectedMonthEvents]);
+
+  const selectedEventsByDay = useMemo(() => (
+    map(selectedMonthDays, (day) => ({
+      day,
+      dayEvents: filter(selectedMonthEvents, (event) => (
+        moment(event.eventStartDate, 'YYYY-MM-DD').date() === day
+      )),
+    }))
+  ), [selectedMonthDays, selectedMonthEvents]);
 
   const handleNextMonth = () => {
     const counter = selectedMonthId === 11 ? 0 : selectedMonthId + 1;
@@ -64,12 +85,8 @@ export function CalendarTable(props) {
     }
   };
 
-  const selectedEvents = eventsByYears[selectedYear] && eventsByYears[selectedYear][selectedMonthId]
-    ? eventsByYears[selectedYear][selectedMonthId]
-    : [];
-
-  const getEventDayName = (year, month, day) => {
-    const eventDay = new Date(year, month, day).getDay();
+  const getEventDayName = (date) => {
+    const eventDay = moment(date, 'YYYY-MM-DD').get('day');
 
     const eventDayName = days[eventDay];
 
@@ -113,10 +130,10 @@ export function CalendarTable(props) {
         </Col>
       </Row>
 
-      {selectedEvents.length > 0
+      {selectedEventsByDay.length
         ? (
           <>
-            {selectedEvents.map((event) => (
+            {selectedEventsByDay.map((event) => (
               <Row
                 className='calendar__single-event'
                 key={event.day}
@@ -126,15 +143,15 @@ export function CalendarTable(props) {
                   className='calendar__single-event--day'
                 >
                   <span className='day-date'>{getCustomDateFormat(event.day, selectedMonthId)}</span>
-                  <span className='day-name'>{getEventDayName(selectedYear, selectedMonthId, event.day)}</span>
+                  <span className='day-name'>{getEventDayName(`${ selectedYear }-${ selectedMonthId + 1 }-${ event.day }`)}</span>
                 </Col>
 
-                {event.dayEvents.map((dayEvent, index) => {
+                {map(event.dayEvents, (dayEvent, index) => {
                   const hasSeparator = getSeparator(event, index);
                   return (
                     <Col
                       xs={24}
-                      key={event.day + dayEvent.time}
+                      key={event.day + dayEvent.eventStartTime}
                       className='day-events'
                     >
                       <Row>
@@ -142,20 +159,20 @@ export function CalendarTable(props) {
                           <span className='event-hour'>
                             {t('at')}
                             {' '}
-                            {dayEvent.time}
+                            {dayEvent.eventStartTime}
                           </span>
                         </Col>
                         <Col
                           xs={isEdited ? 10 : 12}
                           className={`${ hasSeparator ? 'separate' : '' }`}
                         >
-                          <p className='event-title'>{dayEvent.title}</p>
-                          {dayEvent.role
+                          <p className='event-title'>{dayEvent.eventName}</p>
+                          {dayEvent.eventRole
                             && (
                               <div className='text-center'>
                                 {t('as')}
                                 {' '}
-                                {dayEvent.role}
+                                {dayEvent.eventRole}
                               </div>
                             )}
                         </Col>
@@ -164,10 +181,10 @@ export function CalendarTable(props) {
                           className={`${ hasSeparator ? 'separate' : '' }`}
                         >
                           <a
-                            href={dayEvent.tickets}
+                            href={dayEvent.eventLink}
                             className='event-place text-center'
                           >
-                            {dayEvent.place}
+                            {dayEvent.eventPlace}
                           </a>
                         </Col>
                         {isEdited && (
@@ -178,7 +195,7 @@ export function CalendarTable(props) {
                                   type='primary'
                                   shape='circle'
                                   icon={<EditOutlined />}
-                                  onClick={() => editEvent(dayEvent.id)}
+                                  onClick={() => editEvent(dayEvent)}
                                 />
                               </Tooltip>
                               <Tooltip title='Usuń'>
@@ -186,7 +203,11 @@ export function CalendarTable(props) {
                                   type='primary'
                                   shape='circle'
                                   icon={<DeleteOutlined />}
-                                  onClick={() => removeEvent(dayEvent.id)}
+                                  onClick={() => confirmModal({
+                                    title: 'Czy na pewno chcesz usunąć wydarzenie',
+                                    /* eslint-disable-next-line no-underscore-dangle */
+                                    onOk: () => removeEvent(dayEvent._id),
+                                  })}
                                 />
                               </Tooltip>
                             </div>
@@ -214,7 +235,7 @@ CalendarTable.defaultProps = {
 };
 
 CalendarTable.propTypes = {
-  eventsByYears: PropTypes.object.isRequired,
+  events: PropTypes.array.isRequired,
   editEvent: PropTypes.func,
   isEdited: PropTypes.bool,
   removeEvent: PropTypes.func,

@@ -8,7 +8,6 @@ import { events as eventsNew } from 'src/components/eventsNew';
 import { CalendarTable } from 'src/components/CalendarTable';
 import { Divider, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { confirmModal } from 'src/components/modal/confirmModal';
 import { Modal } from 'src/components/modal/Modal';
 
 const initialValues = {
@@ -28,6 +27,10 @@ export default function Events() {
   const [error, setError] = useState(false);
   const [events, setEvents] = useState(null);
   const user = useContext(UserContext);
+  const {
+    Title,
+  } = Typography;
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (loading && !user) return;
@@ -37,7 +40,7 @@ export default function Events() {
           setError(true);
           return;
         }
-        setEvents(result.data);
+        setEvents(result.data?.events);
         setLoading(false);
       });
     }
@@ -49,14 +52,39 @@ export default function Events() {
     toggleModal();
   }, []);
 
-  const {
-    Title,
-  } = Typography;
+  const handleAddEvent = useCallback((formValues) => {
+    const addValues = {
+      ...formValues,
+      eventStartDate: formValues.eventEndDate.format('YYYY-MM-DD'),
+      eventStartTime: formValues.eventEndDate.format('HH:mm'),
+      eventEndDate: formValues.eventEndDate.format('YYYY-MM-DD'),
+    };
+    // eslint-disable-next-line no-console
+    console.log('formValues', addValues);
 
-  const { t } = useTranslation();
+    setLoading(true);
+    axios.post('/api/create-event', addValues)
+      .then((result) => {
+        if (result.status !== 200) {
+          setError(true);
+          return;
+        }
+        setEvents(result.data?.events);
+        setLoading(false);
+      });
+  }, []);
 
-  // eslint-disable-next-line no-console
-  console.log('events', events);
+  // eslint-disable-next-line no-unused-vars
+  const handleEditEvent = useCallback((formValues) => {
+    // eslint-disable-next-line no-console
+    console.log('formValues', formValues);
+  }, []);
+
+  // eslint-disable-next-line no-unused-vars
+  const handleRemoveEvent = useCallback((eventId) => {
+    // eslint-disable-next-line no-console
+    console.log('eventId', eventId);
+  }, []);
 
   return (
     !user ? (
@@ -69,6 +97,7 @@ export default function Events() {
       <>
         <EventForm
           initialValues={initialValues}
+          handleSubmit={handleAddEvent}
         />
 
         <Divider />
@@ -76,9 +105,10 @@ export default function Events() {
         {!error && (
           <CalendarTable
             eventsByYears={eventsNew}
+            events={events || []}
             isEdited
             editEvent={editEvent}
-            removeEvent={confirmModal}
+            removeEvent={handleRemoveEvent}
           />
         )}
 
@@ -89,6 +119,7 @@ export default function Events() {
         >
           <EventForm
             initialValues={initialValues}
+            handleSubmit={handleAddEvent}
           />
         </Modal>
       </>

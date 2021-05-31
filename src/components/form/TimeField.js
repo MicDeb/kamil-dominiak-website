@@ -10,8 +10,6 @@ export default function TimeField({ placeholder, ...props }) {
   const [value, setValue] = useState(field.value);
 
   const handleChange = (time) => {
-    // eslint-disable-next-line no-console
-    console.log('target, ...test', time);
     setValue(time);
   };
 

@@ -4,7 +4,7 @@ const query = require('./utils/query');
 
 const INPUT = `
   $id: ID!,
-  $eventStartDate: String!
+  $eventStartDate: String
   $eventStartTime: String
   $eventEndDate: String
   $eventPlace: String
