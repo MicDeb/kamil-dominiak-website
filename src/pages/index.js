@@ -26,6 +26,7 @@ const Index = () => {
                 key='images-slider'
                 autoplay
                 effect='fade'
+                speed={4000}
               >
                 {homePagePhotos.map((photo) => (
                   <div key={photo.index}>

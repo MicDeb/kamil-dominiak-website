@@ -13,13 +13,13 @@ export const navigationItems = Object.freeze([
 
 export const socialNavigationItems = Object.freeze([
   {
-    location: 'https://facebook.com',
+    location: 'https://m.facebook.com/profile.php?id=101696992069102&ref=content_filter',
     name: 'facebook',
     icon: facebook,
     alt: 'Facebook icon',
   },
   {
-    location: '/https://instagram.com',
+    location: 'https://www.instagram.com/kamildominiak/',
     name: 'instagram',
     icon: instagram,
     alt: 'Instagram icon',

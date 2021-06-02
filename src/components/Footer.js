@@ -36,6 +36,7 @@ export default function Footer() {
             <Link
               key={item.location}
               href={item.location}
+              target='_blank'
             >
               {item.name}
             </Link>

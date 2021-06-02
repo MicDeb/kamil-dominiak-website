@@ -13,6 +13,7 @@ $logoBorderWidth: .01rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      color: $black;
 
       span {
         width: calc(#{$logoSize} / 2);
