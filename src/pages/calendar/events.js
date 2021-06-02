@@ -6,9 +6,18 @@ import { UserContext } from 'src/helpers/userContext';
 import EventForm from 'src/components/EventForm';
 import { events as eventsNew } from 'src/components/eventsNew';
 import { CalendarTable } from 'src/components/CalendarTable';
-import { Divider, Typography } from 'antd';
+import { Divider, Typography, message } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { Modal } from 'src/components/modal/Modal';
+import Error from 'src/components/Error';
+
+const toastSuccess = ({ msg }) => {
+  message.success(msg);
+};
+
+const toastError = ({ msg }) => {
+  message.error(msg);
+};
 
 const initialValues = {
   eventStartDate: '',
@@ -35,14 +44,18 @@ export default function Events() {
   useEffect(() => {
     if (loading && !user) return;
     if (!events) {
-      axios('/api/get-events').then((result) => {
-        if (result.status !== 200) {
+      axios('/api/get-events')
+        .then((result) => {
+          setEvents(result.data?.events);
+          setLoading(false);
+          setError(false);
+        })
+        .catch(() => {
+          toastError({
+            msg: 'Wystąpił błąd. Nie udało się pobrać wydarzeń',
+          });
           setError(true);
-          return;
-        }
-        setEvents(result.data?.events);
-        setLoading(false);
-      });
+        });
     }
   }, [events, user, loading]);
 
@@ -59,18 +72,20 @@ export default function Events() {
       eventStartTime: formValues.eventEndDate.format('HH:mm'),
       eventEndDate: formValues.eventEndDate.format('YYYY-MM-DD'),
     };
-    // eslint-disable-next-line no-console
-    console.log('formValues', addValues);
 
     setLoading(true);
     axios.post('/api/create-event', addValues)
       .then((result) => {
-        if (result.status !== 200) {
-          setError(true);
-          return;
-        }
+        toastSuccess({
+          msg: 'Dodano wydarzenie',
+        });
         setEvents(result.data?.events);
         setLoading(false);
+      })
+      .catch(() => {
+        toastError({
+          msg: 'Wystąpił błąd. Nie udało się dodać wydarzenia',
+        });
       });
   }, []);
 
@@ -94,35 +109,37 @@ export default function Events() {
         </Title>
       </Typography>
     ) : (
-      <>
-        <EventForm
-          initialValues={initialValues}
-          handleSubmit={handleAddEvent}
-        />
+      error
+        ? <Error />
+        : (
+          <>
+            <EventForm
+              initialValues={initialValues}
+              handleSubmit={handleAddEvent}
+            />
 
-        <Divider />
+            <Divider />
 
-        {!error && (
-          <CalendarTable
-            eventsByYears={eventsNew}
-            events={events || []}
-            isEdited
-            editEvent={editEvent}
-            removeEvent={handleRemoveEvent}
-          />
-        )}
+            <CalendarTable
+              eventsByYears={eventsNew}
+              events={events || []}
+              isEdited
+              editEvent={editEvent}
+              removeEvent={handleRemoveEvent}
+            />
 
-        <Modal
-          isModalVisible={openEditModal}
-          handleOk={toggleModal}
-          handleCancel={toggleModal}
-        >
-          <EventForm
-            initialValues={initialValues}
-            handleSubmit={handleAddEvent}
-          />
-        </Modal>
-      </>
+            <Modal
+              isModalVisible={openEditModal}
+              handleOk={toggleModal}
+              handleCancel={toggleModal}
+            >
+              <EventForm
+                initialValues={initialValues}
+                handleSubmit={handleAddEvent}
+              />
+            </Modal>
+          </>
+        )
     )
   );
 }
