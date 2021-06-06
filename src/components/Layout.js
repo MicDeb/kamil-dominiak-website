@@ -19,16 +19,6 @@ import { socialNavigationItems } from './navigation/navigationItems';
 import Login from './Login';
 import { UserContext } from '../helpers/userContext';
 
-if (typeof window !== 'undefined') {
-  // eslint-disable-next-line no-console
-  console.log('test windown', window);
-  netlifyIdentity.init({
-    container: '#identity-modal',
-    namePlaceholder: 'some-placeholder-for-Name',
-    locale: 'pl',
-  });
-}
-
 const TemplateWrapper = ({ children, location }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -53,11 +43,11 @@ const TemplateWrapper = ({ children, location }) => {
     // if (includes(location.pathname, '/calendar/events')) {
     //   // eslint-disable-next-line no-console
     //   console.log('test');
-    //   netlifyIdentity.init({
-    //     container: '#identity-modal',
-    //     namePlaceholder: 'some-placeholder-for-Name',
-    //     locale: 'pl',
-    //   });
+    netlifyIdentity.init({
+      container: '#identity-modal',
+      namePlaceholder: 'some-placeholder-for-Name',
+      locale: 'pl',
+    });
     //   // if (!user) {
     //   //   netlifyIdentity.open('login');
     //   // }
