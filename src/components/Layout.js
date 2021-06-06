@@ -19,7 +19,7 @@ import { socialNavigationItems } from './navigation/navigationItems';
 import Login from './Login';
 import { UserContext } from '../helpers/userContext';
 
-if (includes(window.location.pathname, '/calendar/events')) {
+if (typeof window !== 'undefined' && includes(window.location.pathname, '/calendar/events')) {
   // eslint-disable-next-line no-console
   console.log('test');
   netlifyIdentity.init({
