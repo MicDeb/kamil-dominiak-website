@@ -40,19 +40,17 @@ const TemplateWrapper = ({ children, location }) => {
   }, [location]);
 
   useEffect(() => {
-    // if (includes(location.pathname, '/calendar/events')) {
-    //   // eslint-disable-next-line no-console
-    //   console.log('test');
-    netlifyIdentity.init({
-      container: '#identity-modal',
-      namePlaceholder: 'some-placeholder-for-Name',
-      locale: 'pl',
-    });
-    //   // if (!user) {
-    //   //   netlifyIdentity.open('login');
-    //   // }
-    // }
-  }, []);
+    if (includes(location.pathname, '/calendar/events')) {
+      netlifyIdentity.init({
+        container: '#identity-modal',
+        namePlaceholder: 'some-placeholder-for-Name',
+        locale: 'pl',
+      });
+      if (!user) {
+        netlifyIdentity.open('login');
+      }
+    }
+  }, [location.pathname, user]);
 
   netlifyIdentity.on('login', (currentUser) => {
     netlifyIdentity.close();
