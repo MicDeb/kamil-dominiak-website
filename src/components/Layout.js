@@ -41,17 +41,18 @@ const TemplateWrapper = ({ children, location }) => {
 
   useEffect(() => {
     if (includes(location.pathname, '/calendar/events')) {
+      // eslint-disable-next-line no-console
+      console.log('test');
       netlifyIdentity.init({
         container: '#identity-modal',
-        // APIUrl: 'https://kamil-dominiak-website.netlify.app',
         namePlaceholder: 'some-placeholder-for-Name',
         locale: 'pl',
       });
-      if (!user) {
-        netlifyIdentity.open('login');
-      }
+      // if (!user) {
+      //   netlifyIdentity.open('login');
+      // }
     }
-  }, [location.pathname, user]);
+  }, [location]);
 
   netlifyIdentity.on('login', (currentUser) => {
     netlifyIdentity.close();
