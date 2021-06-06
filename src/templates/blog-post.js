@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
-import { Col, Row, Typography } from 'antd';
+import {
+  Col, Row, Typography, Space,
+} from 'antd';
 import Content, { HTMLContent } from 'src/components/Content';
 import PreviewCompatibleImage from 'src/components/PreviewCompatibleImage';
 
@@ -25,7 +27,7 @@ export const BlogPostTemplate = ({
       <Row>
         <Col>
           {image ? (
-            <div className='featured-thumbnail'>
+            <div className='featured-thumbnail blog-post__main-image'>
               <PreviewCompatibleImage
                 imageInfo={{
                   image,
@@ -34,11 +36,16 @@ export const BlogPostTemplate = ({
               />
             </div>
           ) : null}
-          <Title level={4}>
-            {title}
-          </Title>
-          <Paragraph>{description}</Paragraph>
-          <PostContent content={content} />
+          <Space
+            direction='vertical'
+            size={10}
+          >
+            <Title level={3}>
+              {title}
+            </Title>
+            <Paragraph>{description}</Paragraph>
+            <PostContent content={content} />
+          </Space>
         </Col>
       </Row>
     </section>
@@ -108,7 +115,7 @@ export const pageQuery = graphql`
         description
         featuredimage {
           childImageSharp {
-            fluid(maxWidth: 120, quality: 100) {
+            fluid(maxWidth: 1200, quality: 100) {
               ...GatsbyImageSharpFluid
             }
           }
