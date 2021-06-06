@@ -46,8 +46,11 @@ const TemplateWrapper = ({ children, location }) => {
         namePlaceholder: 'some-placeholder-for-Name',
         locale: 'pl',
       });
+      if (!user) {
+        netlifyIdentity.open('login');
+      }
     }
-  }, [location.pathname]);
+  }, [location.pathname, user]);
 
   netlifyIdentity.on('login', (currentUser) => {
     netlifyIdentity.close();
@@ -55,6 +58,9 @@ const TemplateWrapper = ({ children, location }) => {
   });
 
   netlifyIdentity.on('logout', () => setUser(null));
+
+  // eslint-disable-next-line no-console
+  console.log('location', location);
 
   return (
     <>
