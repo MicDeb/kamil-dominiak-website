@@ -19,18 +19,13 @@ import { socialNavigationItems } from './navigation/navigationItems';
 import Login from './Login';
 import { UserContext } from '../helpers/userContext';
 
-if (typeof window !== 'undefined' && includes(window.location.pathname, '/calendar/events')) {
-  // eslint-disable-next-line no-console
-  console.log('test');
-  netlifyIdentity.init({
-    container: '#identity-modal',
-    namePlaceholder: 'some-placeholder-for-Name',
-    locale: 'pl',
-  });
-  // if (!user) {
-  //   netlifyIdentity.open('login');
-  // }
-}
+// eslint-disable-next-line no-console
+console.log('test2');
+netlifyIdentity.init({
+  container: '#identity-modal',
+  namePlaceholder: 'some-placeholder-for-Name',
+  locale: 'pl',
+});
 
 const TemplateWrapper = ({ children, location }) => {
   const [user, setUser] = useState(null);
