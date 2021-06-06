@@ -19,13 +19,15 @@ import { socialNavigationItems } from './navigation/navigationItems';
 import Login from './Login';
 import { UserContext } from '../helpers/userContext';
 
-// eslint-disable-next-line no-console
-console.log('test2');
-netlifyIdentity.init({
-  container: '#identity-modal',
-  namePlaceholder: 'some-placeholder-for-Name',
-  locale: 'pl',
-});
+if (typeof window !== 'undefined') {
+  // eslint-disable-next-line no-console
+  console.log('test windown', window);
+  netlifyIdentity.init({
+    container: '#identity-modal',
+    namePlaceholder: 'some-placeholder-for-Name',
+    locale: 'pl',
+  });
+}
 
 const TemplateWrapper = ({ children, location }) => {
   const [user, setUser] = useState(null);
