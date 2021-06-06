@@ -2,6 +2,7 @@ import '../styles/all.scss';
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import map from 'lodash/map';
+import includes from 'lodash/includes';
 import { Helmet } from 'react-helmet';
 import { withPrefix } from 'gatsby';
 import {
@@ -39,7 +40,7 @@ const TemplateWrapper = ({ children, location }) => {
   }, [location]);
 
   useEffect(() => {
-    if (location.pathname === '/calendar/events') {
+    if (includes(location.pathname, '/calendar/events')) {
       netlifyIdentity.init({
         container: '#identity-modal',
         // APIUrl: 'https://kamil-dominiak-website.netlify.app',
@@ -58,9 +59,6 @@ const TemplateWrapper = ({ children, location }) => {
   });
 
   netlifyIdentity.on('logout', () => setUser(null));
-
-  // eslint-disable-next-line no-console
-  console.log('location', location);
 
   return (
     <>
@@ -118,7 +116,7 @@ const TemplateWrapper = ({ children, location }) => {
           <Header className='header'>
             <Logo />
             <div className='header__login-and-nav'>
-              {(user || location.pathname === '/calendar/events') && (
+              {(user || includes(location.pathname, '/calendar/events')) && (
                 <Login />
               )}
               <Navigation location={location} />
