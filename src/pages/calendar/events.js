@@ -4,12 +4,14 @@ import React, {
 import axios from 'axios';
 import { UserContext } from 'src/helpers/userContext';
 import EventForm from 'src/components/EventForm';
-import { events as eventsNew } from 'src/components/eventsNew';
 import { CalendarTable } from 'src/components/CalendarTable';
 import { Divider, Typography, message } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { Modal } from 'src/components/modal/Modal';
 import Error from 'src/components/Error';
+import { toastMsgs } from 'src/helpers/toastMsgs';
+import moment from 'moment';
+import omit from 'lodash/omit';
+import { Modal } from '../../components/modal/Modal';
 
 const toastSuccess = ({ msg }) => {
   message.success(msg);
@@ -31,75 +33,122 @@ const initialValues = {
 };
 
 export default function Events() {
-  const [openEditModal, setOpenEditModal] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [events, setEvents] = useState(null);
+  const [isEditModalVisible, setIsEditModalVisible] = useState(false);
+  const [editInitialValues, setEditInitialValues] = useState(initialValues);
+
   const user = useContext(UserContext);
   const {
     Title,
   } = Typography;
   const { t } = useTranslation();
 
-  useEffect(() => {
-    if (loading && !user) return;
-    if (!events) {
-      axios('/api/get-events')
-        .then((result) => {
-          setEvents(result.data?.events);
-          setLoading(false);
-          setError(false);
-        })
-        .catch(() => {
-          toastError({
-            msg: 'Wystąpił błąd. Nie udało się pobrać wydarzeń',
-          });
-          setError(true);
-        });
-    }
-  }, [events, user, loading]);
+  const toggleEditEventModal = (eventValues) => {
+    setEditInitialValues(eventValues);
+    setIsEditModalVisible((prevIsVisible) => !prevIsVisible);
+  };
 
-  const toggleModal = () => setOpenEditModal((prevOpen) => !prevOpen);
-
-  const editEvent = useCallback(() => {
-    toggleModal();
-  }, []);
-
-  const handleAddEvent = useCallback((formValues) => {
-    const addValues = {
-      ...formValues,
-      eventStartDate: formValues.eventEndDate.format('YYYY-MM-DD'),
-      eventStartTime: formValues.eventEndDate.format('HH:mm'),
-      eventEndDate: formValues.eventEndDate.format('YYYY-MM-DD'),
-    };
-
-    setLoading(true);
-    axios.post('/api/create-event', addValues)
+  const getEvents = useCallback(() => (
+    axios('/api/get-events')
       .then((result) => {
-        toastSuccess({
-          msg: 'Dodano wydarzenie',
-        });
         setEvents(result.data?.events);
         setLoading(false);
+        setError(false);
       })
       .catch(() => {
         toastError({
-          msg: 'Wystąpił błąd. Nie udało się dodać wydarzenia',
+          msg: toastMsgs.events.getError,
+        });
+        setError(true);
+      })
+  ), []);
+
+  useEffect(() => {
+    if (loading && !user) return;
+    if (!events) {
+      getEvents();
+    }
+  }, [events, user, loading, getEvents]);
+
+  const getCorrectDatesValues = useCallback((formValues) => {
+    const {
+      eventStartDate,
+      eventStartTime,
+      eventEndDate,
+    } = formValues;
+    return ({
+      eventStartDate: moment.isMoment(eventStartDate)
+        ? eventStartDate.format() : eventStartDate,
+      eventStartTime: moment.isMoment(eventStartTime)
+        ? eventStartTime.format() : eventStartTime,
+      eventEndDate: moment.isMoment(eventEndDate)
+        ? eventEndDate.format() : eventEndDate,
+    });
+  }, []);
+
+  const handleAddEvent = useCallback((formValues, resetForm) => {
+    const datesValues = getCorrectDatesValues(formValues);
+    const addValues = {
+      ...formValues,
+      ...datesValues,
+    };
+
+    axios.post('/api/create-event', addValues)
+      .then(() => {
+        toastSuccess({
+          msg: toastMsgs.events.addSuccess,
+        });
+        getEvents();
+        resetForm();
+      })
+      .catch(() => {
+        toastError({
+          msg: toastMsgs.events.addError,
         });
       });
-  }, []);
+  }, [getCorrectDatesValues, getEvents]);
 
-  // eslint-disable-next-line no-unused-vars
   const handleEditEvent = useCallback((formValues) => {
-    // eslint-disable-next-line no-console
-    console.log('formValues', formValues);
-  }, []);
+    const datesValues = getCorrectDatesValues(formValues);
+    const editValues = {
+      // eslint-disable-next-line no-underscore-dangle
+      id: formValues._id,
+      ...omit(formValues, '_id'),
+      ...datesValues,
 
-  // eslint-disable-next-line no-unused-vars
+    };
+
+    axios.post('/api/update-event', editValues)
+      .then(() => {
+        toastSuccess({
+          msg: toastMsgs.events.updateSuccess,
+        });
+        getEvents();
+        toggleEditEventModal(initialValues);
+      })
+      .catch(() => {
+        toastError({
+          msg: toastMsgs.events.updateError,
+        });
+      });
+  }, [getCorrectDatesValues, getEvents]);
+
   const handleRemoveEvent = useCallback((eventId) => {
-    // eslint-disable-next-line no-console
-    console.log('eventId', eventId);
-  }, []);
+    axios.post('/api/delete-event', { id: eventId })
+      .then(() => {
+        toastSuccess({
+          msg: toastMsgs.events.deleteSuccess,
+        });
+        getEvents();
+      })
+      .catch(() => {
+        toastError({
+          msg: toastMsgs.events.deleteError,
+        });
+      });
+  }, [getEvents]);
 
   return (
     !user ? (
@@ -121,21 +170,27 @@ export default function Events() {
             <Divider />
 
             <CalendarTable
-              eventsByYears={eventsNew}
               events={events || []}
               isEdited
-              editEvent={editEvent}
+              toggleEditEventModal={(eventValues) => toggleEditEventModal(eventValues)}
               removeEvent={handleRemoveEvent}
             />
 
             <Modal
-              isModalVisible={openEditModal}
-              handleOk={toggleModal}
-              handleCancel={toggleModal}
+              isModalVisible={isEditModalVisible}
+              handleCancel={() => toggleEditEventModal(initialValues)}
+              footer={null}
+              title={` 
+                Edytuj wydarzenie: 
+                ${ editInitialValues?.eventName } 
+                (${ moment(editInitialValues?.eventStartDate).format('DD-MM-YYYY') }, 
+                ${ editInitialValues?.eventStartTime ? moment(editInitialValues?.eventStartTime).format('HH:mm') : '' }) 
+              `}
             >
               <EventForm
-                initialValues={initialValues}
-                handleSubmit={handleAddEvent}
+                initialValues={editInitialValues}
+                handleSubmit={handleEditEvent}
+                submitButtonText='Edytuj wydarzenie'
               />
             </Modal>
           </>

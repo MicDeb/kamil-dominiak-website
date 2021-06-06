@@ -31,7 +31,8 @@ export default function EventValidation() {
         .date()
         .required(errors.required),
       eventStartTime: Yup
-        .date(),
+        .date()
+        .required(errors.required),
     })
   );
 }

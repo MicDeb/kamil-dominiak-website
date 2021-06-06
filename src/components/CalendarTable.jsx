@@ -10,39 +10,15 @@ import {
 } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { confirmModal } from 'src/components/modal/confirmModal';
+import { months, days } from 'src/helpers/calendarHelpers';
 
 const initialMonth = moment().get('month');
 const initialYear = moment().get('year');
 
-const months = {
-  0: 'january',
-  1: 'february',
-  2: 'march',
-  3: 'april',
-  4: 'may',
-  5: 'june',
-  6: 'july',
-  7: 'august',
-  8: 'september',
-  9: 'october',
-  10: 'november',
-  11: 'december',
-};
-
-const days = {
-  0: 'sunday',
-  1: 'monday',
-  2: 'tuesday',
-  3: 'wednesday',
-  4: 'thursday',
-  5: 'friday',
-  6: 'saturday',
-};
-
 export function CalendarTable(props) {
   const {
     isEdited,
-    editEvent,
+    toggleEditEventModal,
     removeEvent,
     events,
   } = props;
@@ -151,7 +127,8 @@ export function CalendarTable(props) {
                   return (
                     <Col
                       xs={24}
-                      key={event.day + dayEvent.eventStartTime}
+                      /* eslint-disable-next-line no-underscore-dangle */
+                      key={dayEvent._id}
                       className='day-events'
                     >
                       <Row>
@@ -159,7 +136,9 @@ export function CalendarTable(props) {
                           <span className='event-hour'>
                             {t('at')}
                             {' '}
-                            {dayEvent.eventStartTime}
+                            {dayEvent.eventStartTime
+                              ? moment(dayEvent.eventStartTime).format('HH:mm')
+                              : '-'}
                           </span>
                         </Col>
                         <Col
@@ -169,7 +148,7 @@ export function CalendarTable(props) {
                           <p className='event-title'>{dayEvent.eventName}</p>
                           {dayEvent.eventRole
                             && (
-                              <div className='text-center'>
+                              <div className='text-center event-role'>
                                 {t('as')}
                                 {' '}
                                 {dayEvent.eventRole}
@@ -195,7 +174,7 @@ export function CalendarTable(props) {
                                   type='primary'
                                   shape='circle'
                                   icon={<EditOutlined />}
-                                  onClick={() => editEvent(dayEvent)}
+                                  onClick={() => toggleEditEventModal(dayEvent)}
                                 />
                               </Tooltip>
                               <Tooltip title='Usuń'>
@@ -210,6 +189,20 @@ export function CalendarTable(props) {
                                   })}
                                 />
                               </Tooltip>
+                            </div>
+                          </Col>
+                        )}
+
+                        {dayEvent.eventDescription && (
+                          <Col
+                            xs={24}
+                            className={`${ hasSeparator ? 'separate' : '' }`}
+                          >
+                            <div className='event-description'>
+                              {t('about_event')}
+                              :
+                              {' '}
+                              {dayEvent.eventDescription}
                             </div>
                           </Col>
                         )}
@@ -230,13 +223,13 @@ export function CalendarTable(props) {
 
 CalendarTable.defaultProps = {
   isEdited: false,
-  editEvent: () => null,
+  toggleEditEventModal: () => null,
   removeEvent: () => null,
 };
 
 CalendarTable.propTypes = {
   events: PropTypes.array.isRequired,
-  editEvent: PropTypes.func,
+  toggleEditEventModal: PropTypes.func,
   isEdited: PropTypes.bool,
   removeEvent: PropTypes.func,
 };

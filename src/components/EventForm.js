@@ -8,17 +8,19 @@ import TimeField from 'src/components/form/TimeField';
 import TextAreaField from 'src/components/form/TextAreaField';
 import EventValidation from 'src/helpers/validation/event';
 
-export default function EventForm({ initialValues, handleSubmit }) {
+export default function EventForm({ initialValues, handleSubmit, submitButtonText }) {
   return (
     <div>
       <h1>Dodaj wydarzenie do kalendarza</h1>
       <Formik
         initialValues={initialValues}
-        onSubmit={async (values, { setSubmitting }) => {
+        onSubmit={async (values, { setSubmitting, resetForm }) => {
           setSubmitting(false);
-          handleSubmit(values);
+          handleSubmit(values, resetForm);
+          resetForm();
         }}
         validationSchema={EventValidation}
+        enableReinitialize
       >
         {({ isSubmitting }) => (
           <Form>
@@ -84,7 +86,7 @@ export default function EventForm({ initialValues, handleSubmit }) {
                   htmlType='submit'
                   disabled={isSubmitting}
                 >
-                  Dodaj wydarzenie
+                  { submitButtonText }
                 </Button>
               </Col>
             </Row>
@@ -95,7 +97,12 @@ export default function EventForm({ initialValues, handleSubmit }) {
   );
 }
 
+EventForm.defaultProps = {
+  submitButtonText: 'Dodaj wydarzenie',
+};
+
 EventForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   initialValues: PropTypes.object.isRequired,
+  submitButtonText: PropTypes.string,
 };

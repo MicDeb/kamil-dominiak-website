@@ -7,6 +7,7 @@ export const Modal = ({
   isModalVisible,
   handleOk,
   handleCancel,
+  ...props
 }) => (
   <>
     <AntdModal
@@ -14,6 +15,7 @@ export const Modal = ({
       visible={isModalVisible}
       onOk={handleOk}
       onCancel={handleCancel}
+      {...props}
     >
       {children}
     </AntdModal>
@@ -22,11 +24,12 @@ export const Modal = ({
 
 Modal.defaultProps = {
   isModalVisible: false,
+  handleOk: () => null,
 };
 
 Modal.propTypes = {
   children: PropTypes.node.isRequired,
-  handleOk: PropTypes.func.isRequired,
   handleCancel: PropTypes.func.isRequired,
+  handleOk: PropTypes.func,
   isModalVisible: PropTypes.bool,
 };

@@ -2,6 +2,10 @@
   padding: $gap*7 10.5% $gap*2;
   min-height: calc(100vh - #{$gap * 7});
 
+  @media screen and (min-width: $desktop) {
+    min-height: calc(100vh - #{$gap * 4});
+  }
+
   .social-media-vertical-nav {
     display: none;
     position: fixed;

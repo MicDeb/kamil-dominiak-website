@@ -2,35 +2,31 @@
 
 const query = require('./utils/query');
 
-const INPUT = `
-  $id: ID,
-  $eventStartDate: String
-  $eventStartTime: String
-  $eventEndDate: String
-  $eventPlace: String
-  $eventName: String
-  $eventDescription: String
-  $eventLink: String
-  $eventRole: String
-`;
-
-const DATA = `
-  id: $id,
-  data: {
-    eventStartDate: $eventStartDate
-    eventStartTime: $eventStartTime
-    eventEndDate: $eventEndDate
-    eventPlace: $eventPlace
-    eventName: $eventName
-    eventDescription: $eventDescription
-    eventLink: $eventLink
-    eventRole: $eventRole
-  }
-`;
-
 const UPDATE_EVENT = `
-  mutation(${ INPUT }){
-    updateEvent(${ DATA }){
+  mutation(
+    $id: ID!,
+    $eventStartDate: String
+    $eventStartTime: String
+    $eventEndDate: String
+    $eventPlace: String
+    $eventName: String
+    $eventDescription: String
+    $eventLink: String
+    $eventRole: String
+  ){
+    updateEvent(
+      id: $id,
+      data: {
+        eventStartDate: $eventStartDate
+        eventStartTime: $eventStartTime
+        eventEndDate: $eventEndDate
+        eventPlace: $eventPlace
+        eventName: $eventName
+        eventDescription: $eventDescription
+        eventLink: $eventLink
+        eventRole: $eventRole
+      }
+    ){
       _id
       eventStartDate
       eventStartTime
