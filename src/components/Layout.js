@@ -52,7 +52,7 @@ const TemplateWrapper = ({ children, location }) => {
     //   //   netlifyIdentity.open('login');
     //   // }
     // }
-  }, [location]);
+  }, []);
 
   netlifyIdentity.on('login', (currentUser) => {
     netlifyIdentity.close();
