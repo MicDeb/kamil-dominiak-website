@@ -1,6 +1,6 @@
 ---
 templateKey: blog-post
-title: WSZYTKIEGO NAJLEPSZEGO W NOWYM ROKU test!
+title: WSZYTKIEGO NAJLEPSZEGO W NOWYM ROKU!
 date: 2021-02-28T14:07:13.141Z
 description: >-
   Jest początek 2021 roku. Poprzedni rok był dla wielu bardzo, bardzo trudny i
@@ -22,4 +22,4 @@ Od wielu lat piszę pamiętniki, w których zapisuję obserwacje dotyczące gło
 artystycznej. Chciałbym tutaj rozszerzyć nieco ten nawyk i sposób porządkowania myśli. Będę
 szczęśliwy jeśli skłoni to kogoś do dzielenia się swoimi przemyśleniami na poruszane tematy. A będzie
 na pewno dużo o głosie aktora, wokalisty i uczeniu (się).
-Pozdrawiam i zapraszam do śledzenia wpisów :)
+Pozdrawiam i zapraszam do śledzenia wpisów :) yest
