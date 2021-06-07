@@ -6,7 +6,7 @@ description: >-
   Jest początek 2021 roku. Poprzedni rok był dla wielu bardzo, bardzo trudny i
   życzę wszystkim, aby
 
-  pandemia jak najszybciej się skończyła i żebyśmy mogli wrócić do stabilniejszej wersji naszego życia!
+  pandemia jak najszybciej się skończyła i żebyśmy mogli wrócić do stabilniejszej wersji naszego życia! 
 featuredpost: true
 featuredimage: /img/kamil-dominiak004.jpg
 tags:
@@ -22,4 +22,4 @@ Od wielu lat piszę pamiętniki, w których zapisuję obserwacje dotyczące gło
 artystycznej. Chciałbym tutaj rozszerzyć nieco ten nawyk i sposób porządkowania myśli. Będę
 szczęśliwy jeśli skłoni to kogoś do dzielenia się swoimi przemyśleniami na poruszane tematy. A będzie
 na pewno dużo o głosie aktora, wokalisty i uczeniu (się).
-Pozdrawiam i zapraszam do śledzenia wpisów :) yest
+Pozdrawiam i zapraszam do śledzenia wpisów :) yest 24601
