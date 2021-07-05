@@ -12,21 +12,6 @@ export default function Video() {
           <div className='iframe-container'>
             <iframe
               width='100%'
-              src='https://www.youtube.com/embed/VOq4YrZkHHc'
-              frameBorder='0'
-              allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-              allowFullScreen
-              title='Ignacy Wiśniewski Trio + Kamil Dominiak / Obliczenia Pomyliłem'
-            />
-          </div>
-        </Col>
-        <Col
-          xs={24}
-          md={12}
-        >
-          <div className='iframe-container'>
-            <iframe
-              width='100%'
               src='https://www.youtube.com/embed/kM4XQrO79YI'
               frameBorder='0'
               allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
@@ -50,7 +35,21 @@ export default function Video() {
             />
           </div>
         </Col>
-
+        <Col
+          xs={24}
+          md={12}
+        >
+          <div className='iframe-container'>
+            <iframe
+              width='100%'
+              src='https://www.youtube.com/embed/VOq4YrZkHHc'
+              frameBorder='0'
+              allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+              allowFullScreen
+              title='Ignacy Wiśniewski Trio + Kamil Dominiak / Obliczenia Pomyliłem'
+            />
+          </div>
+        </Col>
         <Col
           xs={24}
           md={12}
