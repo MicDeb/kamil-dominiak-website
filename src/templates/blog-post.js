@@ -11,14 +11,13 @@ import PreviewCompatibleImage from 'src/components/PreviewCompatibleImage';
 export const BlogPostTemplate = ({
   content,
   contentComponent,
-  description,
   title,
   helmet,
   image,
 }) => {
   const PostContent = contentComponent || Content;
   const {
-    Title, Paragraph,
+    Title,
   } = Typography;
 
   return (
@@ -43,7 +42,6 @@ export const BlogPostTemplate = ({
             <Title level={3}>
               {title}
             </Title>
-            <Paragraph>{description}</Paragraph>
             <PostContent content={content} />
           </Space>
         </Col>
@@ -54,7 +52,6 @@ export const BlogPostTemplate = ({
 
 BlogPostTemplate.defaultProps = {
   contentComponent: () => null,
-  description: '',
   title: '',
   helmet: null,
   image: null,
@@ -63,7 +60,6 @@ BlogPostTemplate.defaultProps = {
 BlogPostTemplate.propTypes = {
   content: PropTypes.node.isRequired,
   contentComponent: PropTypes.func,
-  description: PropTypes.string,
   helmet: PropTypes.object,
   image: PropTypes.object,
   title: PropTypes.string,
@@ -76,7 +72,6 @@ const BlogPost = ({ data }) => {
     <BlogPostTemplate
       content={post.html}
       contentComponent={HTMLContent}
-      description={post.frontmatter.description}
       helmet={(
         <Helmet titleTemplate='%s | Blog'>
           <title>{`${ post.frontmatter.title }`}</title>
