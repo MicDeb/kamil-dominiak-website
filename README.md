@@ -1,2 +1,3 @@
 Website base on Gatsby + Netlify + FaunDB
-preview https://www.kamildominiak.pl/
+
+preview: https://www.kamildominiak.pl/
